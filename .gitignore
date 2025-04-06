@@ -10,7 +10,6 @@ data/MECO/l1_joint_data_with_skip.csv
 data/pretraining
 kenlm
 data/DC/all.txt.annotation
-src/config.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
