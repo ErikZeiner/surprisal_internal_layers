@@ -1,3 +1,17 @@
+results
+data
+data/DC/treebank
+data/DC/dundee_corpus_utf8
+data/NS/naturalstories
+.DS_Store
+data/MECO/all.txt
+data/MECO/joint_data_trimmed.csv
+data/MECO/l1_joint_data_with_skip.csv
+data/pretraining
+kenlm
+data/DC/all.txt.annotation
+src/config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,29 @@
+python src/modeling_reading_time.py -i results/logit-lens/NS -d NS_MAZE -o
+python src/modeling_reading_time.py -i results/logit-lens/NS -d NS -o
+python src/modeling_reading_time.py -i results/logit-lens/DC -d DC -o
+python src/modeling_reading_time.py -i results/logit-lens/UCL -d UCL -o
+python src/modeling_reading_time.py -i results/logit-lens/Fillers -d Fillers -o
+python src/modeling_reading_time.py -i results/logit-lens/S_N400 -d S_N400 -o
+python src/modeling_reading_time.py -i results/logit-lens/M_N400 -d M_N400 -o
+
+python src/modeling_reading_time.py -i results/tuned-lens/NS -d NS_MAZE -o
+python src/modeling_reading_time.py -i results/tuned-lens/NS -d NS -o
+python src/modeling_reading_time.py -i results/tuned-lens/DC -d DC -o
+python src/modeling_reading_time.py -i results/tuned-lens/UCL -d UCL -o
+python src/modeling_reading_time.py -i results/tuned-lens/Fillers -d Fillers -o
+python src/modeling_reading_time.py -i results/tuned-lens/S_N400 -d S_N400 -o
+python src/modeling_reading_time.py -i results/tuned-lens/M_N400 -d M_N400 -o
+
+python src/modeling_reading_time.py -i results/logit-lens/MECO/du -d MECO/du -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/ee -d MECO/ee -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/en -d MECO/en -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/fi -d MECO/fi -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/ge -d MECO/ge -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/gr -d MECO/gr -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/he -d MECO/he -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/it -d MECO/it -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/ko -d MECO/ko -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/no -d MECO/no -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/ru -d MECO/ru -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/sp -d MECO/sp -o
+python src/modeling_reading_time.py -i results/logit-lens/MECO/tr -d MECO/tr -o
