@@ -88,9 +88,9 @@ cat all.txt | python ../../src/create_corpus_for_ngram.py -m gpt2 > gpt2_tokeniz
 cat all.txt | python ../../src/create_corpus_for_ngram.py -m facebook/opt-125m > opt_tokenized.txt
 cat all.txt | python ../../src/create_corpus_for_ngram.py -m EleutherAI/pythia-70m-deduped > pythia_tokenized.txt
 cd ../../kenlm/build
-bin/lmplz -o 5 < gpt2_tokenized.txt >gpt2_2gram.arpa
-bin/lmplz -o 5 < opt_tokenized.txt >opt_2gram.arpa
-bin/lmplz -o 5 < pythia_tokenized.txt >pythia_2gram.arpa
+bin/lmplz -o 5 < gpt2_tokenized.txt > gpt2_2gram.arpa
+bin/lmplz -o 5 < opt_tokenized.txt > opt_2gram.arpa
+bin/lmplz -o 5 < pythia_tokenized.txt > pythia_2gram.arpa
 
 python src/run_ngram.py -m work/openwebtext/gpt2_2gram.arpa -t gpt2 -d DC
 python src/run_ngram.py -m work/openwebtext/opt_2gram.arpa -t facebook/opt-125m -d DC
