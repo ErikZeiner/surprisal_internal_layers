@@ -132,7 +132,7 @@ def main(args):
         print(target_file)
         article2interest = json.load(open(target_file))
         for layer_id, data in article2interest.items():
-            modeling(data, str(layer_id), target_file, df_original, is_clause_finals)
+            modeling(data, str(layer_id), target_file, df_original, is_clause_finals=None)
     return
 
 if __name__ == "__main__":
