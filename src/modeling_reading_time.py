@@ -32,7 +32,7 @@ data2targets = {
     "MECO/ru": ["time"],
     "MECO/sp": ["time"],
     "MECO/tr": ["time"],
-    "ZuCO": ["time", "N400"]
+    "ZuCO": ["time", "N400", "time_last_token", "N400_last_token"],
 }
 
 def modeling(data, layer_id, target_file, df_original, is_clause_finals):
@@ -45,7 +45,7 @@ def modeling(data, layer_id, target_file, df_original, is_clause_finals):
     df["interest_prev_1"] = df.apply(lambda x: x["interest_prev_1"] if x["tokenN_in_sent"] > 0 else mean_surprisal, axis=1)
     df["interest_prev_2"] = [mean_surprisal, mean_surprisal] + list(df["interest"])[:-2]
     df["interest_prev_2"] = df.apply(lambda x: x["interest_prev_2"] if x["tokenN_in_sent"] > 1 else mean_surprisal, axis=1)
-    if args.data in ["DC", "NS", "NS_MAZE", "UCL", "Fillers"]:
+    if args.data in ["DC", "NS", "NS_MAZE", "UCL", "Fillers", "ZuCO"]:
         df["is_clause_final"] = df_original.apply(lambda x: is_clause_finals[str(x["article"])][x["sent_id"]][x["tokenN_in_sent"]], axis=1)
     
 
@@ -60,6 +60,7 @@ def modeling(data, layer_id, target_file, df_original, is_clause_finals):
 
         if "last_token" in target_name:
             target_df = df[df["is_clause_final"]]
+            assert len(target_df) > 0
             print(len(target_df))
             target = target_name.replace("_last_token", "")
         else:
@@ -120,6 +121,8 @@ def main(args):
     df_original = df_original.sort_values(["article", "sent_id", "tokenN_in_sent"])
     if args.data in ["DC", "NS", "NS_MAZE", "UCL", "Fillers", "ZuCO"]:
         is_clause_finals = json.load(open(f"data/{args.data}/clause_finals.json"))
+    else:
+        is_clause_finals = None
 
     target_files = glob.glob(f"{args.input_dir}/**/surprisal.json", recursive=True)
     if not target_files:
@@ -132,7 +135,7 @@ def main(args):
         print(target_file)
         article2interest = json.load(open(target_file))
         for layer_id, data in article2interest.items():
-            modeling(data, str(layer_id), target_file, df_original, is_clause_finals=None)
+            modeling(data, str(layer_id), target_file, df_original, is_clause_finals)
     return
 
 if __name__ == "__main__":
