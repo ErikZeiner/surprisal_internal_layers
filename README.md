@@ -73,7 +73,7 @@ bash scripts/modeling.sh
 see visualization/visualization.ipynb
 ```
 
-### analylses
+### analyses
 ```
 see visualization/analyze_error.ipynb
 see visualization/measure_contexualization.ipynb
@@ -97,4 +97,11 @@ python src/run_ngram.py -m work/openwebtext/opt_2gram.arpa -t facebook/opt-125m 
 python src/run_ngram.py -m work/openwebtext/pythia_2gram.arpa -t EleutherAI/pythia-70m-deduped -d DC
 ```
 
+### Acknowledgement
+Preprocessed data are from:
+- https://github.com/jmichaelov/recurrent-vs-transformer-modeling/tree/main
+- https://github.com/Andrea-de-Varda/prediction-resource
+- https://osf.io/3527a/files/osfstorage
+- https://gitlab.com/m-hahn/resource-rational-surprisal/-/tree/main?ref_type=heads
+- https://github.com/vasishth/VasishthSuckowLewisKern2011/tree/master
 
