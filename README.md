@@ -9,6 +9,7 @@ The project is under progress, and the codes are verison 0.
 ```
 # with Python 3.11.10
 pip install -r requirements.txt
+pip install https://github.com/kpu/kenlm/archive/master.zip
 
 # set OPENAI_KEY and HUFFINGFACE_KEY in src/config.py (if one replicates the experiments from scratch)
 
