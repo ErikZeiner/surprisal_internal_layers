@@ -26,6 +26,7 @@ make -j 4
 ```
 
 ### Directories  
+download data from [release](https://github.com/kuribayashi4/surprisal_internal_layers/releases)
 ```
 ./  
 ├ data: human reading data  
