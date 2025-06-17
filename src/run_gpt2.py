@@ -19,7 +19,7 @@ parser.add_argument("-q", "--quantize", default="")
 parser.add_argument("-d", "--data", default="DC")
 parser.add_argument("--trial", action="store_true")
 parser.add_argument("--method", choices=["tuned-lens", "logit-lens"], default="logit-lens")
-parser.add_argument("-c", "--cache", default="~/.cache/huggingface/hub")
+parser.add_argument("-c", "--cache", default="~/.cache/huggingface/hub", type=os.path.expanduser)
 args = parser.parse_args()
 
 @torch.no_grad()
