@@ -11,6 +11,10 @@ from tuned_lens import TunedLens
 
 from config import HUFFINGFACE_KEY
 
+# <ERIK CODE>
+import unicodedata
+# </ERIK CODE>
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 parser = argparse.ArgumentParser()
 parser.add_argument("-m", "--model", required=True)
@@ -19,13 +23,21 @@ parser.add_argument("-q", "--quantize", default="")
 parser.add_argument("-d", "--data", default="DC")
 parser.add_argument("--trial", action="store_true")
 parser.add_argument("--method", choices=["tuned-lens", "logit-lens"], default="logit-lens")
-parser.add_argument("-c", "--cache", default="~/.cache/huggingface/hub", type=os.path.expanduser)
+parser.add_argument("-c", "--cache", default="~/_cache/huggingface/hub")
 args = parser.parse_args()
 
 @torch.no_grad()
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     article2tokens = json.load(open(f"data/{args.data}/tokens.json"))
+    # <ERIK CODE>
+    # article2tokens = json.load(open(f"data/{args.data}/corrected_noaccent_tokens.json"))
+    # with open(f'data/{args.data}/tokens.json', 'r', encoding='utf-8') as file:
+    #     article2tokens = json.load(file)
+    # with open(f"data/{args.data}/tokens.json",'r') as f:
+    #     norm = unicodedata.normalize('NFKC', f.read())
+    #     article2tokens = json.loads(norm)
+    # </ERIK CODE>
     loss_fct = CrossEntropyLoss(ignore_index=-100, reduction="none")
 
     access_token = HUFFINGFACE_KEY
@@ -71,9 +83,9 @@ def main():
 
     eps=1e-8
     if args.method == "tuned-lens":
-        tuned_lens = TunedLens.from_model_and_pretrained(gpt2_model, cache_dir=args.cache).to(gpt2_model.device)
+        tuned_lens = TunedLens.from_model_and_pretrained(gpt2_model).to(gpt2_model.device)
 
-    print(args.model)
+
     for article_id, sents in article2tokens.items():
         print(article_id)
         for i in tqdm(range(0, len(sents), args.batchsize)):
@@ -87,6 +99,7 @@ def main():
             # (info, layres, batchsize, input_length, hidden_size)
             outputs = gpt2_model(encoded_sents[:,:-1], output_hidden_states=True)
             gold_logit = outputs[0]
+
             reps = torch.stack(outputs[2]).to(gold_logit.device)
             target_ids = encoded_sents[:,1:].to(gold_logit.device)
             if args.method == "tuned-lens":
@@ -123,9 +136,12 @@ def main():
 
         assert len(article2surprisals[0][article_id]) == len(sents)
         assert len([surprisal for sent_surprisals in article2surprisals[0][article_id] for surprisal in sent_surprisals]) == len([tok for sent in sents for tok in sent])
-        
+
     if not args.trial:
         json.dump(article2surprisals, open(f"{path}/surprisal.json", "w"))
+        #<ERIK CODE>
+        print(f'SUCCESSFUL RUN: {args.model} {args.data}')
+        #</ERIK CODE>
         # json.dump(article2entropies, open(f"{path}/entropy.json", "w"))
         # json.dump(article2renyi_entropies, open(f"{path}/renyi-entropy.json", "w"))
 
