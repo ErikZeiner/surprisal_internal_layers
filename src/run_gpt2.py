@@ -24,6 +24,9 @@ parser.add_argument("-d", "--data", default="DC")
 parser.add_argument("--trial", action="store_true")
 parser.add_argument("--method", choices=["tuned-lens", "logit-lens"], default="logit-lens")
 parser.add_argument("-c", "--cache", default="~/_cache/huggingface/hub")
+#<ERIK CODE>
+parser.add_argument("--prefix",default="")
+#</ERIK CODE>
 args = parser.parse_args()
 
 @torch.no_grad()
@@ -87,7 +90,7 @@ def main():
 
 
     for article_id, sents in article2tokens.items():
-        print(article_id)
+        print("\n"+article_id)
         for i in tqdm(range(0, len(sents), args.batchsize)):
             batch_sents = sents[i:i+args.batchsize]
             tok_lss = []
@@ -138,7 +141,7 @@ def main():
         assert len([surprisal for sent_surprisals in article2surprisals[0][article_id] for surprisal in sent_surprisals]) == len([tok for sent in sents for tok in sent])
 
     if not args.trial:
-        json.dump(article2surprisals, open(f"{path}/surprisal.json", "w"))
+        json.dump(article2surprisals, open(f"{path}/{args.prefix}_surprisal.json", "w"))
         #<ERIK CODE>
         print(f'SUCCESSFUL RUN: {args.model} {args.data}')
         #</ERIK CODE>
