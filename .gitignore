@@ -192,3 +192,5 @@ cython_debug/
 .idea/
 
 _cashe/
+
+__MACOSX/
