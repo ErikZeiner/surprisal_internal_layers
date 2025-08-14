@@ -1,5 +1,5 @@
-./_config.py
-./src/config.py
+_config.py
+src/config.py
 results_orig
 data
 data/DC/treebank
