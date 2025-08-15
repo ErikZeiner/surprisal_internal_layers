@@ -1,0 +1,60 @@
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/cuda/__init__.py:611: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/cuda/__init__.py:611: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/cuda/__init__.py:611: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/cuda/__init__.py:611: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/cuda/__init__.py:611: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+Traceback (most recent call last):
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 152, in <module>
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 152, in <module>
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 152, in <module>
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 152, in <module>
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 152, in <module>
+    main()
+    main()
+    main()
+    main()
+    main()
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+    return func(*args, **kwargs)
+    return func(*args, **kwargs)
+    return func(*args, **kwargs)
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 35, in main
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 35, in main
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 35, in main
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 35, in main
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/run_gpt2.py", line 35, in main
+    article2tokens = json.load(open(f"data/{args.data}/tokens.json"))
+    article2tokens = json.load(open(f"data/{args.data}/tokens.json"))
+    article2tokens = json.load(open(f"data/{args.data}/tokens.json"))
+    article2tokens = json.load(open(f"data/{args.data}/tokens.json"))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    article2tokens = json.load(open(f"data/{args.data}/tokens.json"))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/MECO//tokens.json'
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/MECO//tokens.json'
+FileNotFoundError: [Errno 2] No such file or directory: 'data/MECO//tokens.json'
+FileNotFoundError: [Errno 2] No such file or directory: 'data/MECO//tokens.json'
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/MECO//tokens.json'
