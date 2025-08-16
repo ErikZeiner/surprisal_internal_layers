@@ -1,0 +1,11 @@
+bayes factor: 60629.4443405603
+error: 7.78170321898187e-05
+Bayes factor analysis
+--------------
+[1] interest + interest_prev_1 + interest_prev_2 + length + log_gmean_freq + length_prev_1 + log_gmean_freq_prev_1 + length_prev_2 + log_gmean_freq_prev_2 : 60629.44 ±0.01%
+
+Against denominator:
+  time ~ interest_prev_1 + interest_prev_2 + length + log_gmean_freq + length_prev_1 + log_gmean_freq_prev_1 + length_prev_2 + log_gmean_freq_prev_2 
+---
+Bayes factor type: BFlinearModel, JZS
+
