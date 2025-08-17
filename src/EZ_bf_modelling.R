@@ -7,7 +7,7 @@ library(jsonlite)
 library(fs)
 
 option_list <- list(
-  make_option(c("-i", "--input_dir"), type = "character", help = "Input directory", metavar = "DIR"),
+  make_option(c("-i", "--input_dir"), type = "character", help = "Input directory", metavar = "DIR", default = "results/logit-lens/DC/"),
   make_option(c("-d", "--data"), type = "character", default = "DC", help = "Data type [default %default]"),
   make_option(c("-o", "--overwrite"), action = "store_true", default = FALSE, help = "Overwrite existing files")
 )
@@ -15,9 +15,10 @@ option_list <- list(
 opt_parser <- OptionParser(option_list = option_list)
 args <- parse_args(opt_parser)
 
+# XXX FOR DEBUGING XXX
 # args <- list()
-# args$input_dir <- "results/logit-lens/DC/"
-# args$data <- 'DC'
+# args$input_dir <- "results/logit-lens/Fillers/"
+# args$data <- 'Fillers'
 # args$overwrite <- TRUE
 
 data2targets <- list(
@@ -54,14 +55,25 @@ df_original <- df_original %>%
   arrange(article, sent_id, tokenN_in_sent)
 
 if (args$data %in% c("DC", "NS", "NS_MAZE", "UCL", "Fillers", "ZuCO")) {
-  is_clause_finals <- fromJSON(paste0("data/", args$data, "/clause_finals.json"))
+  is_clause_finals <- fromJSON(paste0("data/", args$data, "/clause_finals.json"), simplifyVector = FALSE, simplifyDataFrame = FALSE)
 } else {
   is_clause_finals <- NULL
 }
 
-#??????
 target_files <- dir_ls(args$input_dir, recurse = TRUE, glob = "*.json")
-target_files <- target_files[grepl("surprisal\\.json$", target_files)]
+
+get_path <- function(x) regmatches(x, regexpr("results/[a-z-]+/[A-Za-z0-9_]+/[A-Za-z0-9_.-]+/", x))
+paths_helix <- get_path(target_files[grepl("helix_surprisal\\.json$", target_files)])
+paths_colab <- get_path(target_files[grepl("colab_surprisal\\.json$", target_files)])
+paths <- unique(c(paths_helix, paths_colab))
+
+target_files <- sapply(paths, function(path) {
+  if (any(startsWith(paths_helix, path))) {
+    paste(path, "helix_surprisal.json", sep = "")
+  }else {
+    paste(path, "colab_surprisal.json", sep = "")
+  }
+})
 
 # is > 0?
 stopifnot(length(target_files) > 0)
@@ -78,13 +90,15 @@ for (target_file in target_files) {
   }
 
   print(target_file)
-  article2interest <- fromJSON(target_file)
+  article2interest <- fromJSON(target_file, simplifyVector = FALSE, simplifyDataFrame = FALSE)
 
   for (layer_id in names(article2interest)) {
     data <- article2interest[[layer_id]]
 
-    # target_file <- "results/logit-lens/DC/opt-125m/surprisal.json"
-    # article2interest <- fromJSON(target_file)
+    # XXX FOR DEBUGING XXX
+    # target_file <- "results/logit-lens/Fillers/opt-125m/helix_surprisal.json"
+    # article2interest <- fromJSON(target_file, simplifyVector = FALSE, simplifyDataFrame = FALSE)
+    # # str(article2interest)
     # layer_id <- "0"
     # data <- article2interest[[layer_id]]
 
@@ -112,10 +126,11 @@ for (target_file in target_files) {
     # data[[as.character(row$article)]][[sent_id]][[tokenN_in_sent]]
 
     df$interest <- mapply(
-      function(article, sent_id, tokenN_in_sent) { data[[as.character(article)]][[sent_id]][[tokenN_in_sent]] },
+      function(article, sent_id, tokenN_in_sent) { data[[as.character(article)]][[sent_id + 1]][[tokenN_in_sent + 1]]
+      },
       article = df_original$article,
-      sent_id = df_original$sent_id + 1,
-      tokenN_in_sent = df_original$tokenN_in_sent + 1
+      sent_id = df_original$sent_id,
+      tokenN_in_sent = df_original$tokenN_in_sent
     )
     df$interest_prev_1 <- c(mean_surprisal, head(df$interest, -1))
     df$interest_prev_1 <- ifelse(df$tokenN_in_sent > 0, df$interest_prev_1, mean_surprisal)
@@ -123,14 +138,12 @@ for (target_file in target_files) {
     df$interest_prev_2 <- ifelse(df$tokenN_in_sent > 1, df$interest_prev_2, mean_surprisal)
 
     if (args$data %in% c("DC", "NS", "NS_MAZE", "UCL", "Fillers", "ZuCO")) {
-      df$is_clause_final <- mapply(
-        function(article, sent_id, tokenN_in_sent) {
-          is_clause_finals[[as.character(article)]][[sent_id]][[tokenN_in_sent]]
-        },
-        article = df_original$article,
-        sent_id = df_original$sent_id + 1,
-        tokenN_in_sent = df_original$tokenN_in_sent + 1
-      )
+      df$is_clause_final <- sapply(seq_len(nrow(df)), function(i) {
+        article <- as.character(df$article[i])
+        sent_id <- df$sent_id[i] + 1
+        token_id <- df$tokenN_in_sent[i] + 1
+        is_clause_finals[[article]][[sent_id]][[token_id]]
+      })
     }
 
     for (target_name in unlist(data2targets[[args$data]])) {
@@ -145,9 +158,9 @@ for (target_file in target_files) {
       }
 
       if (grepl("last_token", target_name)) {
-        target_df <- subset(df, is_clause_final)
+        target_df <- df[df$is_clause_final,]
         stopifnot(nrow(target_df) > 0)
-        cat(nrow(target_df), "\n")
+        # cat(nrow(target_df), "\n")
         target <- gsub("_last_token", "", target_name)
       } else {
         target_df <- df
@@ -203,7 +216,6 @@ for (target_file in target_files) {
       bf <- bfInterest / bfBaseline
       bf_df <- as.data.frame(bf)
 
-      print(paste(output_path))
       writeLines(c(
         paste("bayes factor:", bf_df$bf),
         paste("error:", bf_df$error),
@@ -224,4 +236,3 @@ for (target_file in target_files) {
 #
 # model_classic <- lm(response ~ X + Z, data = dummy_data)
 # model_classic
-
