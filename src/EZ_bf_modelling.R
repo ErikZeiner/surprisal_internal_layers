@@ -7,17 +7,18 @@ library(jsonlite)
 library(fs)
 
 option_list <- list(
-  make_option(c("-i", "--input_dir"), type = "character", help = "Input directory", metavar = "DIR", default = "results/logit-lens/DC/"),
+  make_option(c("-i", "--input_dir"), type = "character", help = "Input directory", metavar = "DIR", default = "results/logit-lens/"),
   make_option(c("-d", "--data"), type = "character", default = "DC", help = "Data type [default %default]"),
   make_option(c("-o", "--overwrite"), action = "store_true", default = FALSE, help = "Overwrite existing files")
 )
 
 opt_parser <- OptionParser(option_list = option_list)
 args <- parse_args(opt_parser)
+args$source <- sub("/.*", "", args$input_dir)
 
 # XXX FOR DEBUGING XXX
 # args <- list()
-# args$input_dir <- "results/logit-lens/Fillers/"
+# args$input_dir <- paste0(args$source,"/logit-lens/Fillers/")
 # args$data <- 'Fillers'
 # args$overwrite <- TRUE
 
@@ -34,19 +35,19 @@ data2targets <- list(
   S_N400 = list('Federmeier et al. (2007)', 'Hubbard et al. (2019)', 'Szewczyk & Federmeier (2022)',
                 'Szewczyk et al. (2022)', 'Wlotko & Federmeier (2012)'),
   M_N400 = list('C3', 'C4', 'CP3', 'CP4', 'CPz', 'Cz', 'P3', 'P4', 'Pz', 'all'),
-  `MECO/du` = list("time"),
-  `MECO/ee` = list("time"),
-  `MECO/en` = list("time"),
-  `MECO/fi` = list("time"),
-  `MECO/ge` = list("time"),
-  `MECO/gr` = list("time"),
-  `MECO/he` = list("time"),
-  `MECO/it` = list("time"),
-  `MECO/ko` = list("time"),
-  `MECO/no` = list("time"),
-  `MECO/ru` = list("time"),
-  `MECO/sp` = list("time"),
-  `MECO/tr` = list("time"),
+  # `MECO/du` = list("time"),
+  # `MECO/ee` = list("time"),
+  # `MECO/en` = list("time"),
+  # `MECO/fi` = list("time"),
+  # `MECO/ge` = list("time"),
+  # `MECO/gr` = list("time"),
+  # `MECO/he` = list("time"),
+  # `MECO/it` = list("time"),
+  # `MECO/ko` = list("time"),
+  # `MECO/no` = list("time"),
+  # `MECO/ru` = list("time"),
+  # `MECO/sp` = list("time"),
+  # `MECO/tr` = list("time"),
   ZuCO = list("time", "N400", "time_last_token", "N400_last_token")
 )
 
@@ -62,7 +63,11 @@ if (args$data %in% c("DC", "NS", "NS_MAZE", "UCL", "Fillers", "ZuCO")) {
 
 target_files <- dir_ls(args$input_dir, recurse = TRUE, glob = "*.json")
 
-get_path <- function(x) regmatches(x, regexpr("results/[a-z-]+/[A-Za-z0-9_]+/[A-Za-z0-9_.-]+/", x))
+# ORIG SURPRISAL
+target_files <- target_files[grepl("surprisal\\.json$", target_files)]
+
+# MY SURPRISAL
+get_path <- function(x) regmatches(x, regexpr(paste0(args$source, "/[a-z-]+/[A-Za-z0-9_]+/[A-Za-z0-9_.-]+/"), x))
 paths_helix <- get_path(target_files[grepl("helix_surprisal\\.json$", target_files)])
 paths_colab <- get_path(target_files[grepl("colab_surprisal\\.json$", target_files)])
 paths <- unique(c(paths_helix, paths_colab))
@@ -96,7 +101,7 @@ for (target_file in target_files) {
     data <- article2interest[[layer_id]]
 
     # XXX FOR DEBUGING XXX
-    # target_file <- "results/logit-lens/Fillers/opt-125m/helix_surprisal.json"
+    # target_file <- paste0(args$source,"/logit-lens/Fillers/opt-125m/helix_surprisal.json")
     # article2interest <- fromJSON(target_file, simplifyVector = FALSE, simplifyDataFrame = FALSE)
     # # str(article2interest)
     # layer_id <- "0"
@@ -154,7 +159,8 @@ for (target_file in target_files) {
       }
 
       if (any(file.exists(output_path)) && !args$overwrite) {
-        cat("skip!\n")
+        cat("skip")
+        # next
       }
 
       if (grepl("last_token", target_name)) {
@@ -203,24 +209,54 @@ for (target_file in target_files) {
         baseline_formula <- paste0(target, " ~ interest_prev_1 + interest_prev_2 + length + log_gmean_freq + ",
                                    "length_prev_1 + log_gmean_freq_prev_1 + length_prev_2 + log_gmean_freq_prev_2")
       }
-    }
+      # target_df_std <- target_df   # make a copy
+      # num_vars <- sapply(target_df_std, is.numeric)   # logical mask
+      # target_df_std[num_vars] <- scale(target_df_std[num_vars])
+      # formula <-"time ~ interest + length"
+      # baseline_formula <- "time ~ interest"
+      # target_df_std$time <- as.numeric(scale(target_df$time))
+      # summary(target_df$time)
+      # sd(target_df$time)
+      if (args$data == "M_N400" && target == "all") {
+        #TODO: do I even need the distinction for mixedlm?
+      } else {
+        #orig had OLS
+        bfInterest <- lmBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
+        bfBaseline <- lmBF(formula = as.formula(paste(baseline_formula)), data = as.data.frame(target_df))
+        #
+        # reg <- regressionBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
+        # reg
+        bf <- bfInterest / bfBaseline
+        bf_df <- as.data.frame(bf)
 
 
-    if (args$data == "M_N400" && target == "all") {
-      #mixedlm
-    } else {
-      #orig had OLS
-      bfInterest <- lmBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
-      bfBaseline <- lmBF(formula = as.formula(paste(baseline_formula)), data = as.data.frame(target_df))
+      }
 
-      bf <- bfInterest / bfBaseline
-      bf_df <- as.data.frame(bf)
+      library(lme4)
+      if (args$data == "M_N400" && target == "all") {
+        # Mixed effects model using lme4
+        mod <- lmer(formula, data = target_df)
+        res <- mod
 
+        mod_baseline <- lmer(baseline_formula, data = target_df)
+        res_baseline <- mod_baseline
+      } else {
+        # Ordinary least squares regression
+        mod <- lm(formula, data = target_df)
+        res <- mod
+        res
+        mod_baseline <- lm(baseline_formula, data = target_df)
+        res_baseline <- mod_baseline
+      }
       writeLines(c(
         paste("bayes factor:", bf_df$bf),
+        paste("log bayes factor:", log10(bf_df$bf)),
         paste("error:", bf_df$error),
-        capture.output(bf)
-      ), output_path)
+        capture.output(bf),
+        paste("delta loglik:", logLik(res) - logLik(res_baseline)),
+        paste("delta loglik per tokens:", (logLik(res) - logLik(res_baseline)) / nrow(df)),
+        paste("average surprisal:", mean(df$interest) / log(2)),
+        paste("perplexity:", exp(mean(df$interest)))), output_path)
     }
   }
 }

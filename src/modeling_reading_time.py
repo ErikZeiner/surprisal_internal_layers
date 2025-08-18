@@ -108,7 +108,7 @@ def modeling(data, layer_id, target_file, df_original, is_clause_finals):
 
             y_baseline, X_baseline = dmatrices(baseline_formula, data=target_df, return_type='dataframe')
             mod_baseline = sm.OLS(y_baseline, X_baseline)
-            res_baseline = mod_baseline.fit() 
+            res_baseline = mod_baseline.fit()
 
         with open(output_path, "w") as f:
             f.write(f"delta loglik: {res.llf - res_baseline.llf}\n")
