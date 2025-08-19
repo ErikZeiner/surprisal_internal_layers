@@ -15,7 +15,7 @@ all_data <- tibble(
 )
 
 dir <- "results_orig/logit-lens/NS"
-target <- "time_last_token"
+target <- "time"
 
 
 for (i in 1:length(models)) {
@@ -30,7 +30,7 @@ for (i in 1:length(models)) {
   for (file in files) {
     layer <- strsplit(str_split(file, "layer")[[1]][2], "\\.")[[1]][[1]]
     model <- strsplit(file, "/")[[1]][4]
-    ling_data <- strsplit(file, "/")[[1]][3]
+    data <- strsplit(file, "/")[[1]][3]
     method <- strsplit(file, "/")[[1]][2]
     data_name <- gsub("^_|_$", "", paste(ling_data, target, sep = "_"))
     if (layer == 0) next
@@ -41,7 +41,7 @@ for (i in 1:length(models)) {
     ppl <- as.numeric(strsplit(result_text[3], ": ")[[1]][2])
 
     all_data <- all_data %>% add_row(
-      Data = ling_data,
+      Data = data,
       Model = model,
       Method = method,
       Layer = as.numeric(layer),
@@ -51,6 +51,26 @@ for (i in 1:length(models)) {
   }
 }
 
+all_data <- all_data %>%
+  group_by(Model) %>%
+  mutate(
+    Max_layer = max(Layer),
+    Min_layer = min(Layer),
+    Normalized_layer = (Layer - Min_layer) / (Max_layer - Min_layer),
+    Measurement = data2method[[data_name]],
+    Name = data2stimuli[[data_name]],
+    Params = models2params[Model],
+    Log_params = log10(models2params[Model]),
+  ) %>%
+  ungroup()
+
+all_data <- all_data %>%
+  group_by(Model) %>%
+  mutate(
+    Last_ppl = PPL[which.max(Layer)],
+    Last_ppp = LogLik[which.max(Layer)],
+    Max_ppp = max(LogLik)
+  )
 
 ggplot(all_data[all_data$Model=="pythia-2.8b-deduped",], aes(x = Layer, y=LogLik, colour=Model))+
   geom_line()

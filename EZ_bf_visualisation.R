@@ -15,7 +15,7 @@ all_data <- tibble(
 )
 
 dir <- "results_orig/logit-lens/NS"
-target <- "time_last_token"
+target <- "time"
 
 
 
@@ -32,7 +32,7 @@ for (i in 1:length(models)) {
     # file <- "results/logit-lens/DC/gpt2/helix_surprisal.json.BayesFactor.layer0..time_last_token"
     layer <- strsplit(str_split(file, "layer")[[1]][2], "\\.")[[1]][[1]]
     model <- strsplit(file, "/")[[1]][4]
-    ling_data <- strsplit(file, "/")[[1]][3]
+    data <- strsplit(file, "/")[[1]][3]
     method <- strsplit(file, "/")[[1]][2]
     data_name <- gsub("^_|_$", "", paste(ling_data, target, sep = "_"))
     if (layer == 0) next
@@ -42,7 +42,7 @@ for (i in 1:length(models)) {
     error <- as.numeric(strsplit(result_text[2], ": ")[[1]][2])
 
     all_data <- all_data %>% add_row(
-      Data = file,
+      Data = data,
       Model = model,
       Method = method,
       Layer = as.numeric(layer),
@@ -53,7 +53,7 @@ for (i in 1:length(models)) {
 }
 
 
-df <- all_data %>%
+all_data <- all_data %>%
   group_by(Model) %>%
   mutate(
     Max_layer = max(Layer),
@@ -63,16 +63,62 @@ df <- all_data %>%
     Name = data2stimuli[[data_name]],
     Params = models2params[Model],
     Log_params = log10(models2params[Model]),
-    Last_bf = all_data[Layer == Max_layer,]$BayesFactor,
-    Last_error = all_data[Layer == Max_layer,]$Error,
-    Max_bf = max(BayesFactor)
   ) %>%
   ungroup()
 
+all_data <- all_data %>%
+  group_by(Model) %>%
+  mutate(
+    Last_bf = BayesFactor[which.max(Layer)],
+    Last_error = Error[which.max(Layer)],
+    Max_bf = max(BayesFactor)
+  )
 
 
-ggplot(all_data[all_data$Model=="pythia-2.8b-deduped",], aes(x = Layer, y=BayesFactor, colour=Model))+
+ggplot(df, aes(x = Layer, y=BayesFactor, colour=Model))+
+  geom_point()+
   geom_line()
+
+black_list <-c()
+data <- all_datasets[!all_datasets %in% black_list]
+data <- c("DC_time",)
+layer_results <- data.frame(
+  data = character(),
+  stimuli = character(),
+  method = character(),
+  measurement = character(),
+  name = character(),
+  range = character(),
+  PPP = numeric(),
+  stringsAsFactors = FALSE
+)
+
+df <- df[!df$model %in% filter_model, ]
+
+for (d in data) {
+  print(d)
+  for (method in c("logit-lens", "tuned-lens")) {
+    ranges <- list(c(0, 0.2), c(0.2, 0.4), c(0.4, 0.6), c(0.6, 0.8), c(0.8, 1))
+    for (r in ranges) {
+      sub_df <- df[df$data == d & df$method == method, ]
+
+      # Filter rows where normalized_layer is between r[1] and r[2]
+      filtered_rows <- sub_df[sub_df$normalized_layer >= r[1] & sub_df$normalized_layer <= r[2], ]
+
+      # Add row directly to dataframe
+      layer_results <- rbind(layer_results, data.frame(
+        data = d,
+        stimuli = data2stimuli[[d]],
+        method = method,
+        measurement = data2method[[d]],
+        name = paste0(data2method[[d]], data2cite[[d]]),
+        range = paste0(r[1], "-", r[2]),
+        PPP = mean(filtered_rows$loglik, na.rm = TRUE) * 1000,
+        stringsAsFactors = FALSE
+      ))
+    }
+  }
+}
 
 
 
