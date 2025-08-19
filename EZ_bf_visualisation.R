@@ -1,6 +1,8 @@
 library(stringr)
 library(tibble)
 library(dplyr)
+library(tidyverse)
+library(ggplot2)
 
 source("EZ_lists_visualisation.R")
 all_data <- tibble(
@@ -12,8 +14,9 @@ all_data <- tibble(
   Error = numeric()
 )
 
-dir <- "results/logit-lens/DC"
+dir <- "results_orig/logit-lens/NS"
 target <- "time_last_token"
+
 
 
 for (i in 1:length(models)) {
@@ -60,11 +63,17 @@ df <- all_data %>%
     Name = data2stimuli[[data_name]],
     Params = models2params[Model],
     Log_params = log10(models2params[Model]),
-    Last_bf = df[Layer == Max_layer,]$BayesFactor,
-    Last_error = df[Layer == Max_layer,]$Error,
+    Last_bf = all_data[Layer == Max_layer,]$BayesFactor,
+    Last_error = all_data[Layer == Max_layer,]$Error,
     Max_bf = max(BayesFactor)
   ) %>%
   ungroup()
+
+
+
+ggplot(all_data[all_data$Model=="pythia-2.8b-deduped",], aes(x = Layer, y=BayesFactor, colour=Model))+
+  geom_line()
+
 
 
 ### TABLE

@@ -67,30 +67,31 @@ target_files <- dir_ls(args$input_dir, recurse = TRUE, glob = "*.json")
 target_files <- target_files[grepl("surprisal\\.json$", target_files)]
 
 # MY SURPRISAL
-get_path <- function(x) regmatches(x, regexpr(paste0(args$source, "/[a-z-]+/[A-Za-z0-9_]+/[A-Za-z0-9_.-]+/"), x))
-paths_helix <- get_path(target_files[grepl("helix_surprisal\\.json$", target_files)])
-paths_colab <- get_path(target_files[grepl("colab_surprisal\\.json$", target_files)])
-paths <- unique(c(paths_helix, paths_colab))
+# get_path <- function(x) regmatches(x, regexpr(paste0(args$source, "/[a-z-]+/[A-Za-z0-9_]+/[A-Za-z0-9_.-]+/"), x))
+# paths_helix <- get_path(target_files[grepl("helix_surprisal\\.json$", target_files)])
+# paths_colab <- get_path(target_files[grepl("colab_surprisal\\.json$", target_files)])
+# paths <- unique(c(paths_helix, paths_colab))
+#
+# target_files <- sapply(paths, function(path) {
+#   if (any(startsWith(paths_helix, path))) {
+#     paste(path, "helix_surprisal.json", sep = "")
+#   }else {
+#     paste(path, "colab_surprisal.json", sep = "")
+#   }
+# })
 
-target_files <- sapply(paths, function(path) {
-  if (any(startsWith(paths_helix, path))) {
-    paste(path, "helix_surprisal.json", sep = "")
-  }else {
-    paste(path, "colab_surprisal.json", sep = "")
-  }
-})
-
-# is > 0?
 stopifnot(length(target_files) > 0)
 
 for (target_file in target_files) {
   if (args$data == "NS_MAZE") {
     if (grepl("NS", target_file) == FALSE) {
       print("issue")
+      next
     }
   } else {
     if (grepl(args$data, target_file) == FALSE) {
       print("issue")
+      next
     }
   }
 
@@ -160,7 +161,7 @@ for (target_file in target_files) {
 
       if (any(file.exists(output_path)) && !args$overwrite) {
         cat("skip")
-        # next
+        next
       }
 
       if (grepl("last_token", target_name)) {
@@ -219,6 +220,9 @@ for (target_file in target_files) {
       # sd(target_df$time)
       if (args$data == "M_N400" && target == "all") {
         #TODO: do I even need the distinction for mixedlm?
+        # identical for now
+        bfInterest <- lmBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
+        bfBaseline <- lmBF(formula = as.formula(paste(baseline_formula)), data = as.data.frame(target_df))
       } else {
         #orig had OLS
         bfInterest <- lmBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
@@ -226,37 +230,37 @@ for (target_file in target_files) {
         #
         # reg <- regressionBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
         # reg
-        bf <- bfInterest / bfBaseline
-        bf_df <- as.data.frame(bf)
-
-
       }
+      bf <- bfInterest / bfBaseline
+      bf_df <- as.data.frame(bf)
 
-      library(lme4)
-      if (args$data == "M_N400" && target == "all") {
-        # Mixed effects model using lme4
-        mod <- lmer(formula, data = target_df)
-        res <- mod
-
-        mod_baseline <- lmer(baseline_formula, data = target_df)
-        res_baseline <- mod_baseline
-      } else {
-        # Ordinary least squares regression
-        mod <- lm(formula, data = target_df)
-        res <- mod
-        res
-        mod_baseline <- lm(baseline_formula, data = target_df)
-        res_baseline <- mod_baseline
-      }
+      # library(lme4)
+      # if (args$data == "M_N400" && target == "all") {
+      #   # Mixed effects model using lme4
+      #   mod <- lmer(formula, data = target_df)
+      #   res <- mod
+      #
+      #   mod_baseline <- lmer(baseline_formula, data = target_df)
+      #   res_baseline <- mod_baseline
+      # } else {
+      #   # Ordinary least squares regression
+      #   mod <- lm(formula, data = target_df)
+      #   res <- mod
+      #   res
+      #   mod_baseline <- lm(baseline_formula, data = target_df)
+      #   res_baseline <- mod_baseline
+      # }
       writeLines(c(
         paste("bayes factor:", bf_df$bf),
         paste("log bayes factor:", log10(bf_df$bf)),
         paste("error:", bf_df$error),
-        capture.output(bf),
-        paste("delta loglik:", logLik(res) - logLik(res_baseline)),
-        paste("delta loglik per tokens:", (logLik(res) - logLik(res_baseline)) / nrow(df)),
-        paste("average surprisal:", mean(df$interest) / log(2)),
-        paste("perplexity:", exp(mean(df$interest)))), output_path)
+        capture.output(bf)
+        # paste("delta loglik:", logLik(res) - logLik(res_baseline)),
+        # paste("delta loglik per tokens:", (logLik(res) - logLik(res_baseline)) / nrow(df)),
+        # paste("average surprisal:", mean(df$interest) / log(2)),
+        # paste("perplexity:", exp(mean(df$interest))))
+      )
+        , output_path)
     }
   }
 }
