@@ -11,6 +11,7 @@ from tuned_lens import TunedLens
 
 from config import HUFFINGFACE_KEY
 
+from torch.nn.utils.rnn import pad_sequence
 from transformer_lens import HookedTransformer
 import cProfile, pstats, io
 from pstats import SortKey
@@ -24,6 +25,7 @@ parser.add_argument("-d", "--data", default="DC")
 parser.add_argument("--trial", action="store_true")
 parser.add_argument("--method", choices=["tuned-lens", "logit-lens"], default="logit-lens")
 parser.add_argument("-c", "--cache", default="~/_cache/huggingface/hub")
+parser.add_argument("--prefix",default="")
 args = parser.parse_args()
 
 @torch.no_grad()
@@ -31,32 +33,26 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     article2tokens = json.load(open(f"data/{args.data}/tokens.json"))
 
-    loss_fct = CrossEntropyLoss(ignore_index=-100, reduction="none")
-
     access_token = HUFFINGFACE_KEY
-    hf_tokenizer = AutoTokenizer.from_pretrained(args.model, cache_dir=args.cache)
-    hf_tokenizer.pad_token = hf_tokenizer.eos_token
-
-
+    # hf_tokenizer = AutoTokenizer.from_pretrained(args.model, cache_dir=args.cache)
+    # hf_tokenizer.pad_token = hf_tokenizer.eos_token
 
     path = f"results/{args.method}/{args.data}/{os.path.basename(args.model)}"
     os.makedirs(path, exist_ok=True)
 
-
-    hf_model = AutoModelForCausalLM.from_pretrained(args.model, token=access_token, cache_dir=args.cache)
-    hf_model.to(device).eval()
-
-
-
+    # hf_model = AutoModelForCausalLM.from_pretrained(args.model, token=access_token, cache_dir=args.cache)
+    # hf_model.to(device).eval()
     gpt2_model = HookedTransformer.from_pretrained(args.model, device=device,cache_dir=args.cache,     fold_ln=False,
     center_writing_weights=False,
     center_unembed=False)
     gpt2_model.eval()
+
     tokenizer = gpt2_model.tokenizer
     tokenizer.pad_token = tokenizer.eos_token
 
     loss_fct = CrossEntropyLoss(ignore_index=-100, reduction="none")
-    bos_string = hf_tokenizer.decode(hf_model.config.bos_token_id)
+    # bos_string = hf_tokenizer.decode(hf_model.config.bos_token_id)
+    bos_string = tokenizer.decode(gpt2_model.config.bos_token_id)
     
     article2surprisals = defaultdict(lambda: defaultdict(list))
     # article2entropies = defaultdict(lambda: defaultdict(list))
@@ -66,8 +62,6 @@ def main():
         article2tokens = {k: v for k, v in list(article2tokens.items())[:1]}
 
     eps=1e-8
-    if args.method == "tuned-lens":
-        tuned_lens = TunedLens.from_model_and_pretrained(gpt2_model).to(gpt2_model.device)
 
     print(args.model)
 
@@ -83,12 +77,9 @@ def main():
                 tok_ls = [gpt2_model.to_tokens(" " + tok, prepend_bos=False).shape[1] for tok in sent]
                 tok_lss.append(tok_ls)
 
-            # Build list of strings with BOS + sentence tokens
             batch_strings = [bos_string + " " + " ".join(sent) for sent in batch_sents]
-            # Tokenize each sentence individually
             tokenized = [gpt2_model.to_tokens(s, prepend_bos=False)[0] for s in batch_strings]
-            # Pad sequences to max length (like HF padding)
-            from torch.nn.utils.rnn import pad_sequence
+
             pad_id = gpt2_model.tokenizer.pad_token_id or gpt2_model.tokenizer.eos_token_id
             encoded_sents = pad_sequence(tokenized, batch_first=True, padding_value=pad_id).to(device)
 
@@ -114,20 +105,19 @@ def main():
 
         assert len(article2surprisals[0][article_id]) == len(sents)
         assert len([surprisal for sent_surprisals in article2surprisals[0][article_id] for surprisal in sent_surprisals]) == len([tok for sent in sents for tok in sent])
+
     pr.disable()
     s = io.StringIO()
     sortby = SortKey.CUMULATIVE
     ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
     ps.print_stats()
-    print(s.getvalue())
-
-
+    with open(f'measurement_tl_{args.model}_{args.data}_{args.method}.txt', 'w') as file:
+        file.writelines(s.getvalue())
 
     if not args.trial:
-        json.dump(article2surprisals, open(f"{path}/tl_surprisal.json", "w"))
-        #<ERIK CODE>
+        json.dump(article2surprisals, open(f"{path}/{args.prefix}_tl_surprisal.json", "w"))
         print(f'SUCCESSFUL RUN: {args.model} {args.data}')
-        #</ERIK CODE>
+
         # json.dump(article2entropies, open(f"{path}/entropy.json", "w"))
         # json.dump(article2renyi_entropies, open(f"{path}/renyi-entropy.json", "w"))
 

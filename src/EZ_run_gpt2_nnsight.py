@@ -25,6 +25,7 @@ parser.add_argument("-d", "--data", default="DC")
 parser.add_argument("--trial", action="store_true")
 parser.add_argument("--method", choices=["tuned-lens", "logit-lens"], default="logit-lens")
 parser.add_argument("-c", "--cache", default="~/_cache/huggingface/hub")
+parser.add_argument("--prefix",default="")
 args = parser.parse_args()
 
 
@@ -114,10 +115,11 @@ def main():
     sortby = SortKey.CUMULATIVE
     ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
     ps.print_stats()
-    print(s.getvalue())
+    with open(f'measurement_nn_{args.model}_{args.data}_{args.method}.txt','w') as file:
+        file.writelines(s.getvalue())
 
     if not args.trial:
-        json.dump(article2surprisals, open(f"{path}/nn_surprisal.json", "w"))
+        json.dump(article2surprisals, open(f"{path}/{args.prefix}_nn_surprisal.json", "w"))
         print(f'SUCCESSFUL RUN: {args.model} {args.data}')
 
 

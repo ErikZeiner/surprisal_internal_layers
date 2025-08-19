@@ -13,8 +13,10 @@ from config import HUFFINGFACE_KEY
 
 # <ERIK CODE>
 import unicodedata
+import cProfile, pstats, io
+from pstats import SortKey
 # </ERIK CODE>
-print(torch.version.cuda)
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 parser = argparse.ArgumentParser()
 parser.add_argument("-m", "--model", required=True)
@@ -90,9 +92,12 @@ def main():
     if args.method == "tuned-lens":
         tuned_lens = TunedLens.from_model_and_pretrained(gpt2_model).to(gpt2_model.device)
 
-
+    #<ERIK CODE>
+    pr = cProfile.Profile()
+    pr.enable()
+    #</ERIK CODE>
     for article_id, sents in article2tokens.items():
-        print("\n"+article_id)
+        print(article_id)
         for i in tqdm(range(0, len(sents), args.batchsize)):
             batch_sents = sents[i:i+args.batchsize]
             tok_lss = []
@@ -101,7 +106,6 @@ def main():
                 tok_lss.append(tok_ls)
             encoded_sents = tokenizer([bos_string + " " + " ".join(sent) for sent in batch_sents], return_tensors="pt", padding=True, add_special_tokens=False)["input_ids"].to(device)
 
-            # (info, layres, batchsize, input_length, hidden_size)
             outputs = gpt2_model(encoded_sents[:,:-1], output_hidden_states=True)
             gold_logit = outputs[0]
 
@@ -141,6 +145,16 @@ def main():
 
         assert len(article2surprisals[0][article_id]) == len(sents)
         assert len([surprisal for sent_surprisals in article2surprisals[0][article_id] for surprisal in sent_surprisals]) == len([tok for sent in sents for tok in sent])
+
+    #<ERIK CODE>
+    pr.disable()
+    s = io.StringIO()
+    sortby = SortKey.CUMULATIVE
+    ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
+    ps.print_stats()
+    with open(f'measurement_orig_{args.model}_{args.data}_{args.method}.txt', 'w') as file:
+        file.writelines(s.getvalue())
+    #</ERIK CODE>
 
     if not args.trial:
         json.dump(article2surprisals, open(f"{path}/{args.prefix}_surprisal.json", "w"))
