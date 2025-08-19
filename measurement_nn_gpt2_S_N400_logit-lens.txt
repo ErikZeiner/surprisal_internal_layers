@@ -1,0 +1,593 @@
+         40798570 function calls (37941678 primitive calls) in 660.978 seconds
+
+   Ordered by: cumulative time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+218120/18620    0.468    0.000  636.205    0.034 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:1769(_wrapped_call_impl)
+218120/18620    0.869    0.000  636.170    0.034 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:1777(_call_impl)
+     1330    0.007    0.000  609.297    0.458 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/interleaving.py:88(__exit__)
+     1330    0.010    0.000  608.597    0.458 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/tracer.py:19(__exit__)
+89110/18620    0.401    0.000  608.512    0.033 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:277(execute)
+     1330    0.010    0.000  608.483    0.458 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/base.py:67(__exit__)
+     1330    0.010    0.000  608.187    0.457 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/backends/base.py:21(__call__)
+     1330    0.062    0.000  607.906    0.457 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/interleaving.py:138(execute)
+     1330    0.009    0.000  607.206    0.457 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:316(interleave)
+     1330    0.006    0.000  606.854    0.456 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:452(_execute)
+200830/1330    1.489    0.000  606.767    0.456 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:1789(inner)
+     1330    0.071    0.000  606.738    0.456 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py:1035(forward)
+     1330    0.308    0.000  571.049    0.429 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py:773(forward)
+    15960    0.083    0.000  532.385    0.033 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/modeling_layers.py:61(__call__)
+    18620    0.086    0.000  507.982    0.027 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/linear.py:124(forward)
+    18620  507.879    0.027  507.879    0.027 {built-in method torch._C._nn.linear}
+    18620    0.043    0.000  478.498    0.026 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/interleaver.py:113(output_hook)
+    18620    0.065    0.000  478.456    0.026 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/interleaver.py:58(<lambda>)
+    18620    0.222    0.000  478.391    0.026 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/protocols/intervention.py:13(intervene)
+    19950    0.263    0.000  477.791    0.024 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/graph.py:221(execute)
+    34580    0.432    0.000  475.911    0.014 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/protocols/module.py:62(execute)
+    15960    0.638    0.000   90.192    0.006 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py:396(forward)
+    63840    0.582    0.000   75.515    0.001 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/pytorch_utils.py:114(forward)
+    63840   74.089    0.001   74.089    0.001 {built-in method torch.addmm}
+    15960    0.205    0.000   56.798    0.004 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py:372(forward)
+    15960    0.673    0.000   30.398    0.002 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/models/gpt2/modeling_gpt2.py:269(forward)
+    17290    0.056    0.000   29.305    0.002 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/loss.py:1309(forward)
+    17290    0.048    0.000   29.226    0.002 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/functional.py:3379(cross_entropy)
+    17290   29.167    0.002   29.167    0.002 {built-in method torch._C._nn.cross_entropy_loss}
+    89110    0.169    0.000   14.504    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:111(create)
+   106400    0.136    0.000   14.372    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/node.py:27(__init__)
+   106400    0.296    0.000   14.236    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:35(__init__)
+   106400    0.153    0.000   12.840    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:373(_meta_data)
+    89110    0.269    0.000   12.618    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:385(traceback_str)
+    89110    0.143    0.000   11.988    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/traceback.py:217(extract_stack)
+    89110    0.083    0.000   11.820    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/traceback.py:372(extract)
+    89110    2.043    0.000   11.737    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/traceback.py:394(_extract_from_extended_frame_gen)
+   627760    0.567    0.000    6.482    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/linecache.py:52(checkcache)
+    51870    0.204    0.000    6.435    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:202(create)
+   627760    5.871    0.000    5.871    0.000 {built-in method posix.stat}
+    34580    0.091    0.000    5.773    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:88(__call__)
+    34580    0.117    0.000    5.632    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/protocols/module.py:19(add)
+    15960    1.899    0.000    4.609    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/activations.py:46(forward)
+    19950    0.024    0.000    3.720    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/protocols/base.py:14(add)
+    18620    0.090    0.000    3.576    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:107(output)
+    18620    0.025    0.000    3.461    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/protocols/entrypoint.py:16(add)
+1650530/303240    1.819    0.000    3.246    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:16(apply)
+    17290    0.016    0.000    2.846    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/proxy.py:34(save)
+    17290    0.014    0.000    2.829    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/protocols/lock.py:11(add)
+332500/303240    0.458    0.000    2.802    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:44(<listcomp>)
+    15960    0.187    0.000    2.489    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/integrations/sdpa_attention.py:43(sdpa_attention_forward)
+    15960    0.016    0.000    2.363    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/proxy.py:122(__getitem__)
+    70490    0.232    0.000    2.338    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/node.py:34(prepare_inputs)
+    50540    0.197    0.000    2.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/normalization.py:216(forward)
+    15960    1.843    0.000    1.843    0.000 {built-in method torch.tanh}
+    16217    0.086    0.000    1.795    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:2827(__call__)
+    50540    0.251    0.000    1.755    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/functional.py:2884(layer_norm)
+     1330    0.152    0.000    1.752    0.001 /gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_run_gpt2_nnsight.py:80(<listcomp>)
+    16217    0.053    0.000    1.700    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:2925(_call_one)
+  1018780    0.585    0.000    1.634    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/traceback.py:313(line)
+    15960    1.425    0.000    1.425    0.000 {built-in method torch._C._nn.scaled_dot_product_attention}
+    14887    0.063    0.000    1.411    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:3043(encode_plus)
+    50540    1.396    0.000    1.396    0.000 {built-in method torch.layer_norm}
+436240/2660    0.379    0.000    1.389    0.001 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:505(_reset)
+    16217    0.042    0.000    1.342    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/models/gpt2/tokenization_gpt2_fast.py:109(_batch_encode_plus)
+     1330    0.011    0.000    1.327    0.001 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:75(trace)
+    14887    0.034    0.000    1.321    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/models/gpt2/tokenization_gpt2_fast.py:118(_encode_plus)
+    16217    0.111    0.000    1.298    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:512(_batch_encode_plus)
+    14887    0.052    0.000    1.285    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:603(_encode_plus)
+    17290    0.354    0.000    1.263    0.000 /gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_run_gpt2_nnsight.py:103(<listcomp>)
+    17290    0.042    0.000    1.095    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/proxy.py:102(__getattr__)
+     1330    0.014    0.000    0.961    0.001 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/invoker.py:53(__enter__)
+  1526840    0.850    0.000    0.953    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:683(__setattr__)
+   929670    0.467    0.000    0.944    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/linecache.py:26(getline)
+    87780    0.200    0.000    0.895    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:308(set_value)
+    89110    0.107    0.000    0.866    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:103(preprocess)
+   178220    0.775    0.000    0.775    0.000 {method 'view' of 'torch._C.TensorBase' objects}
+   436240    0.196    0.000    0.741    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:491(_reset_proxies)
+    79800    0.671    0.000    0.671    0.000 {method 'contiguous' of 'torch._C.TensorBase' objects}
+    16217    0.042    0.000    0.623    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:220(__init__)
+  1018780    0.311    0.000    0.590    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/traceback.py:386(extended_frame_gen)
+  4441031    0.563    0.000    0.585    0.000 {built-in method builtins.isinstance}
+     1330    0.006    0.000    0.584    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1322(__init__)
+     1330    0.011    0.000    0.578    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1080(__init__)
+    15960    0.147    0.000    0.558    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/_tensor.py:1037(split)
+     1330    0.011    0.000    0.557    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1887(parse_processor_args)
+     1330    0.004    0.000    0.543    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:3261(signature)
+     2660    0.013    0.000    0.540    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1161(__iter__)
+     1330    0.003    0.000    0.540    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:3007(from_callable)
+     1330    0.017    0.000    0.537    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2435(_signature_from_callable)
+   538650    0.535    0.000    0.535    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:1949(__getattr__)
+   200830    0.183    0.000    0.532    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:536(_hook)
+    16217    0.112    0.000    0.501    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:689(convert_to_tensors)
+   159600    0.167    0.000    0.498    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:41(<listcomp>)
+     1330    0.005    0.000    0.498    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2315(_signature_from_builtin)
+     3990    0.013    0.000    0.493    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1465(display)
+     1330    0.035    0.000    0.486    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2172(_signature_fromstr)
+    71820    0.113    0.000    0.478    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:2651(parameters)
+    15960    0.080    0.000    0.476    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/proxy.py:315(inner)
+392390/373770    0.375    0.000    0.469    0.000 {built-in method builtins.getattr}
+    33250    0.087    0.000    0.459    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/dropout.py:69(forward)
+    49724    0.437    0.000    0.437    0.000 {built-in method torch.tensor}
+    37242    0.020    0.000    0.424    0.000 {built-in method builtins.next}
+   193531    0.423    0.000    0.423    0.000 {method 'sum' of 'torch._C.TensorBase' objects}
+   929670    0.342    0.000    0.412    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/linecache.py:36(getlines)
+     2660    0.009    0.000    0.406    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1326(refresh)
+   123690    0.239    0.000    0.404    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:191(reset)
+    70490    0.098    0.000    0.403    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:65(fetch_attr)
+3855137/3851145    0.309    0.000    0.402    0.000 {built-in method builtins.len}
+    16217    0.395    0.000    0.395    0.000 {method 'encode_batch' of 'tokenizers.Tokenizer' objects}
+    15960    0.390    0.000    0.390    0.000 {built-in method torch.pow}
+   929670    0.326    0.000    0.389    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/linecache.py:147(lazycache)
+   929670    0.374    0.000    0.374    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/traceback.py:261(__init__)
+    33250    0.184    0.000    0.372    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/functional.py:1398(dropout)
+   235410    0.368    0.000    0.368    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:459(_scanning)
+    15960    0.360    0.000    0.360    0.000 {built-in method torch.split}
+    71820    0.068    0.000    0.354    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:2676(named_parameters)
+     1330    0.011    0.000    0.350    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/interleaving.py:39(__init__)
+     1330    0.017    0.000    0.334    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1199(update)
+    70490    0.180    0.000    0.329    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/node.py:85(update_dependencies)
+    70490    0.142    0.000    0.328    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:327(update_listeners)
+   178220    0.100    0.000    0.321    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/__init__.py:173(search)
+   202160    0.168    0.000    0.311    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:252(__getitem__)
+218120/1330    0.162    0.000    0.301    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:430(_set_tracer)
+   267844    0.300    0.000    0.300    0.000 {built-in method torch._C._get_tracing_state}
+     1330    0.003    0.000    0.294    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/graph.py:67(reset)
+    71820    0.151    0.000    0.292    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:2631(_named_members)
+     1330    0.035    0.000    0.291    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:57(reset)
+     1330    0.029    0.000    0.285    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:953(__init__)
+  1018780    0.279    0.000    0.279    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/traceback.py:322(walk_stack)
+     1330    0.057    0.000    0.276    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/interleaver.py:76(__enter__)
+     2660    0.024    0.000    0.270    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:163(__exit__)
+     1330    0.088    0.000    0.270    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/graph.py:107(compile)
+    81130    0.264    0.000    0.264    0.000 {method 'transpose' of 'torch._C.TensorBase' objects}
+    17290    0.260    0.000    0.260    0.000 {built-in method torch.tensor_split}
+    32434    0.030    0.000    0.255    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:726(as_tensor)
+     3990    0.010    0.000    0.249    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:460(print_status)
+   170241    0.247    0.000    0.247    0.000 {built-in method builtins.setattr}
+    85120    0.037    0.000    0.246    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:121(restore)
+   163590    0.145    0.000    0.246    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:83(listeners)
+     1330    0.202    0.000    0.246    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/backends/base.py:62(frame_injection)
+    15960    0.027    0.000    0.232    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:976(_wrapped_update)
+     3990    0.015    0.000    0.230    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1151(__str__)
+     1330    0.006    0.000    0.223    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:3143(batch_encode_plus)
+     1330    0.003    0.000    0.222    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/proxy.py:151(__add__)
+   193531    0.211    0.000    0.211    0.000 {method 'numpy' of 'torch._C.TensorBase' objects}
+    15960    0.045    0.000    0.204    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1175(update)
+117040/62510    0.175    0.000    0.203    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/configuration_utils.py:208(__getattribute__)
+   203490    0.174    0.000    0.200    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/compiler/__init__.py:425(is_compiling)
+     3990    0.078    0.000    0.195    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:467(format_meter)
+     2660    0.011    0.000    0.193    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1266(close)
+    17290    0.190    0.000    0.190    0.000 {method 'copy' of 'dict' objects}
+    17290    0.053    0.000    0.188    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/_tensor.py:1176(__iter__)
+   264670    0.128    0.000    0.182    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:147(attached)
+   194180    0.126    0.000    0.179    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:93(dependencies)
+     1330    0.005    0.000    0.178    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/globals.py:90(__enter__)
+    71820    0.104    0.000    0.173    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/node.py:54(inner)
+    87780    0.090    0.000    0.167    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:239(add)
+   193531    0.159    0.000    0.159    0.000 {method 'detach' of 'torch._C.TensorBase' objects}
+    17290    0.114    0.000    0.157    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1155(append_new_layers)
+    10640    0.005    0.000    0.154    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:193(inner)
+     3990    0.009    0.000    0.152    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:454(fp_write)
+    55860    0.034    0.000    0.149    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/node.py:78(_to)
+     6650    0.148    0.000    0.148    0.000 {method 'write' of '_io.TextIOWrapper' objects}
+     1330    0.023    0.000    0.145    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2100(_signature_strip_non_python_syntax)
+93100/18620    0.072    0.000    0.139    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:350(subgraph)
+   178220    0.099    0.000    0.134    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/__init__.py:272(_compile)
+  1242221    0.122    0.000    0.133    0.000 {method 'add' of 'set' objects}
+    61180    0.126    0.000    0.126    0.000 {method 'to' of 'torch._C.TensorBase' objects}
+   130340    0.123    0.000    0.123    0.000 {method 'size' of 'torch._C.TensorBase' objects}
+    70490    0.082    0.000    0.122    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:111(preprocess_node)
+    33250    0.118    0.000    0.118    0.000 {built-in method torch.dropout}
+   180880    0.078    0.000    0.115    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:51(<dictcomp>)
+    18620    0.044    0.000    0.113    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:1676(register_forward_hook)
+  1289360    0.112    0.000    0.112    0.000 {method 'append' of 'list' objects}
+    19950    0.109    0.000    0.109    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:258(<listcomp>)
+    37242    0.042    0.000    0.107    0.000 {built-in method builtins.hasattr}
+     1330    0.020    0.000    0.106    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/masking_utils.py:727(create_causal_mask)
+  1020110    0.105    0.000    0.105    0.000 {method 'strip' of 'str' objects}
+    17290    0.104    0.000    0.104    0.000 {method 'unbind' of 'torch._C.TensorBase' objects}
+     1330    0.004    0.000    0.103    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/globals.py:140(try_deregister)
+    17290    0.102    0.000    0.102    0.000 {built-in method torch.cumsum}
+   163590    0.101    0.000    0.101    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:91(<listcomp>)
+     2660    0.009    0.000    0.101    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/sparse.py:191(forward)
+    89110    0.068    0.000    0.101    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/proxy.py:20(__init__)
+     1330    0.002    0.000    0.098    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/globals.py:180(deregister)
+    49210    0.056    0.000    0.098    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/_VF.py:27(__getattr__)
+   129010    0.039    0.000    0.091    0.000 {built-in method builtins.sum}
+    21280    0.058    0.000    0.091    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/tokenize.py:433(_tokenize)
+     2660    0.005    0.000    0.090    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/functional.py:2432(embedding)
+    15960    0.090    0.000    0.090    0.000 {method 'reshape' of 'torch._C.TensorBase' objects}
+    32434    0.055    0.000    0.090    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/_tensor.py:1160(__len__)
+   178220    0.086    0.000    0.086    0.000 {method 'search' of 're.Pattern' objects}
+    18620    0.057    0.000    0.085    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/jit/_trace.py:1327(is_tracing)
+     2660    0.085    0.000    0.085    0.000 {built-in method torch.embedding}
+     3990    0.006    0.000    0.084    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:377(disp_len)
+     2660    0.033    0.000    0.082    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:387(__post_init__)
+     1330    0.020    0.000    0.081    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:332(_screen_shape_linux)
+     2660    0.017    0.000    0.080    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:149(__enter__)
+    18620    0.075    0.000    0.079    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/graph.py:274(count)
+    89110    0.042    0.000    0.079    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:279(__next__)
+    16217    0.014    0.000    0.078    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/collections/__init__.py:1111(__init__)
+    16217    0.017    0.000    0.077    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:565(<listcomp>)
+    50540    0.061    0.000    0.077    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/backends/__init__.py:38(__get__)
+   193531    0.075    0.000    0.075    0.000 {method 'cpu' of 'torch._C.TensorBase' objects}
+    31104    0.016    0.000    0.073    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:3968(_eventual_warn_about_too_long_sequence)
+     3990    0.004    0.000    0.072    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:373(_text_width)
+   232750    0.072    0.000    0.072    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:163(done)
+    89110    0.056    0.000    0.072    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:133(add)
+    89110    0.041    0.000    0.065    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:131(value)
+    55861    0.047    0.000    0.065    0.000 <frozen importlib._bootstrap>:405(parent)
+    18620    0.046    0.000    0.065    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/utils/hooks.py:24(__init__)
+    16217    0.032    0.000    0.064    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:2722(_get_padding_truncation_strategies)
+    16217    0.030    0.000    0.064    0.000 <frozen _collections_abc>:941(update)
+     1330    0.003    0.000    0.063    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:392(to_device)
+   283290    0.063    0.000    0.063    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:48(alive)
+    50540    0.025    0.000    0.063    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/configuration_utils.py:405(_attn_implementation)
+    85120    0.024    0.000    0.062    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/util.py:117(patch)
+     1330    0.007    0.000    0.062    0.000 <string>:2(__init__)
+    16217    0.056    0.000    0.060    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:307(_convert_encoding)
+    16217    0.035    0.000    0.060    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:437(set_truncation_and_padding)
+81130/77140    0.051    0.000    0.057    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:2818(named_modules)
+    48651    0.030    0.000    0.055    0.000 <frozen _collections_abc>:859(__iter__)
+   404320    0.054    0.000    0.054    0.000 {method 'items' of 'collections.OrderedDict' objects}
+   194180    0.053    0.000    0.053    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:101(<listcomp>)
+   172900    0.037    0.000    0.052    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:374(<genexpr>)
+    23940    0.037    0.000    0.052    0.000 {method 'format' of 'str' objects}
+    70490    0.051    0.000    0.051    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:345(destroy)
+     1330    0.003    0.000    0.051    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/globals.py:98(__exit__)
+     1330    0.009    0.000    0.049    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/tracer.py:11(__enter__)
+     1330    0.012    0.000    0.049    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/interleaver.py:122(__exit__)
+     1330    0.011    0.000    0.049    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:689(_decr_instances)
+7980/5320    0.024    0.000    0.048    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:1077(__getattr__)
+     1330    0.003    0.000    0.047    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/ast.py:33(parse)
+    71820    0.032    0.000    0.047    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/_tensor.py:1198(__hash__)
+     1330    0.009    0.000    0.046    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:359(device)
+     1330    0.044    0.000    0.045    0.000 {built-in method fcntl.ioctl}
+     1330    0.045    0.000    0.045    0.000 {built-in method builtins.compile}
+   368669    0.043    0.000    0.043    0.000 {method 'items' of 'dict' objects}
+    57190    0.028    0.000    0.041    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:433(__getattr__)
+   193531    0.041    0.000    0.041    0.000 {method 'tolist' of 'numpy.ndarray' objects}
+    15960    0.040    0.000    0.040    0.000 {built-in method math.sqrt}
+    53200    0.028    0.000    0.038    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:444(_tracing)
+     1330    0.008    0.000    0.037    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/tracer.py:17(__init__)
+     1330    0.003    0.000    0.037    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/globals.py:118(try_register)
+    70490    0.037    0.000    0.037    0.000 {built-in method torch._C._has_torch_function_variadic}
+    18620    0.036    0.000    0.036    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/utils/hooks.py:35(remove)
+    18620    0.015    0.000    0.036    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:657(__getattr__)
+     1330    0.002    0.000    0.034    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/globals.py:166(register)
+     1330    0.004    0.000    0.034    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/masking_utils.py:248(sdpa_mask_recent_torch)
+    89110    0.033    0.000    0.033    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/proxy.py:26(__init__)
+     1330    0.010    0.000    0.031    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/masking_utils.py:646(_preprocess_mask_arguments)
+    90440    0.031    0.000    0.031    0.000 {method 'split' of 'str' objects}
+    38570    0.026    0.000    0.031    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/module.py:2701(<lambda>)
+   222110    0.030    0.000    0.030    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/_jit_internal.py:106(is_scripting)
+    21539    0.017    0.000    0.030    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/enum.py:688(__call__)
+     1330    0.009    0.000    0.029    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/masking_utils.py:202(_ignore_causal_mask_sdpa)
+    63538    0.024    0.000    0.029    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:259(__getitem__)
+     3990    0.007    0.000    0.029    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2257(p)
+     1330    0.015    0.000    0.029    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/base.py:29(__init__)
+     2660    0.018    0.000    0.029    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/dataclasses.py:1235(fields)
+     7980    0.021    0.000    0.028    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:272(_is_ascii)
+   123690    0.027    0.000    0.027    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:181(redundant)
+    17290    0.027    0.000    0.027    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:1126(__getitem__)
+     1330    0.024    0.000    0.027    0.000 {built-in method builtins.__build_class__}
+     3990    0.009    0.000    0.026    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/_weakrefset.py:63(__iter__)
+    18620    0.025    0.000    0.025    0.000 {built-in method torch._C._is_tracing}
+     1330    0.005    0.000    0.025    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:441(status_printer)
+     1330    0.008    0.000    0.025    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/tokenize.py:408(tokenize)
+     1343    0.008    0.000    0.025    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/tokenize.py:299(detect_encoding)
+     1330    0.025    0.000    0.025    0.000 {built-in method torch.arange}
+    14630    0.021    0.000    0.023    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:458(__setattr__)
+     1330    0.006    0.000    0.023    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/modeling_utils.py:5777(warn_if_padding_and_no_attention_mask)
+    81644    0.022    0.000    0.022    0.000 {built-in method torch._C._has_torch_function_unary}
+    21537    0.009    0.000    0.022    0.000 <frozen abc>:117(__instancecheck__)
+     5320    0.014    0.000    0.022    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2669(__init__)
+     1330    0.008    0.000    0.022    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:666(__new__)
+   123690    0.022    0.000    0.022    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:199(<listcomp>)
+    18647    0.022    0.000    0.022    0.000 {method 'match' of 're.Pattern' objects}
+    19950    0.013    0.000    0.022    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:211(__init__)
+    32434    0.016    0.000    0.021    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/__init__.py:1108(is_tensor)
+     6650    0.010    0.000    0.021    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:400(format_interval)
+    55860    0.017    0.000    0.020    0.000 {built-in method builtins.issubclass}
+     3990    0.016    0.000    0.020    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1447(format_dict)
+     6650    0.020    0.000    0.020    0.000 {method 'flush' of '_io.TextIOWrapper' objects}
+     7980    0.012    0.000    0.019    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:102(acquire)
+     1330    0.005    0.000    0.018    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:682(_get_free_pos)
+    55861    0.018    0.000    0.018    0.000 {method 'rpartition' of 'str' objects}
+     2660    0.002    0.000    0.018    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:458(_prepare_input)
+     2660    0.018    0.000    0.018    0.000 {method 'clear' of 'list' objects}
+     1330    0.017    0.000    0.017    0.000 {built-in method _operator.add}
+    75811    0.017    0.000    0.017    0.000 {built-in method builtins.id}
+    90440    0.017    0.000    0.017    0.000 {built-in method sys._getframe}
+    70490    0.017    0.000    0.017    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/node.py:172(fulfilled)
+     9310    0.016    0.000    0.016    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:231(__call__)
+    16217    0.010    0.000    0.016    0.000 <frozen _collections_abc>:790(items)
+    65684    0.016    0.000    0.016    0.000 {method 'pop' of 'dict' objects}
+     1330    0.005    0.000    0.016    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/interleaving.py:98(_batch)
+    50540    0.016    0.000    0.016    0.000 {built-in method torch._C._get_cudnn_enabled}
+    64868    0.016    0.000    0.016    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/collections/__init__.py:1128(__setitem__)
+     1330    0.005    0.000    0.016    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:346(<listcomp>)
+    55860    0.015    0.000    0.015    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/utils/hooks.py:33(<genexpr>)
+    41487    0.015    0.000    0.015    0.000 {method 'update' of 'dict' objects}
+   168910    0.015    0.000    0.015    0.000 {built-in method unicodedata.east_asian_width}
+    15960    0.015    0.000    0.015    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:33(__init__)
+     7980    0.012    0.000    0.015    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:106(release)
+     1330    0.005    0.000    0.015    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/_weakrefset.py:110(remove)
+3990/1330    0.008    0.000    0.015    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:451(__getitem__)
+     1330    0.006    0.000    0.014    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:212(__init__)
+     2660    0.010    0.000    0.013    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/import_utils.py:995(is_torchdynamo_compiling)
+     3990    0.011    0.000    0.013    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:186(__format__)
+    21537    0.013    0.000    0.013    0.000 {built-in method _abc._abc_instancecheck}
+     2660    0.004    0.000    0.013    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2063(_signature_is_builtin)
+    49724    0.013    0.000    0.013    0.000 {method 'dim' of 'torch._C.TensorBase' objects}
+    21539    0.013    0.000    0.013    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/enum.py:1095(__new__)
+    86982    0.013    0.000    0.013    0.000 {method 'get' of 'dict' objects}
+    32434    0.013    0.000    0.013    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:587(<listcomp>)
+     2660    0.003    0.000    0.013    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1287(fp_write)
+     1330    0.012    0.000    0.012    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1334(to_legacy_cache)
+     2660    0.004    0.000    0.012    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/_weakrefset.py:27(__exit__)
+       13    0.000    0.000    0.012    0.001 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/linecache.py:80(updatecache)
+     2660    0.011    0.000    0.011    0.000 {built-in method now}
+       13    0.000    0.000    0.011    0.001 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/tokenize.py:392(open)
+     6650    0.005    0.000    0.011    0.000 {built-in method builtins.all}
+     1330    0.010    0.000    0.011    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2955(__init__)
+     1330    0.004    0.000    0.011    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:477(to_tuple)
+     1330    0.001    0.000    0.011    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:685(<setcomp>)
+     1330    0.008    0.000    0.011    0.000 <frozen os>:674(__getitem__)
+     5320    0.003    0.000    0.011    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:110(__enter__)
+     1330    0.007    0.000    0.010    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/graph.py:32(__init__)
+    89110    0.010    0.000    0.010    0.000 {method 'reverse' of 'list' objects}
+    15960    0.010    0.000    0.010    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:78(update)
+    19950    0.010    0.000    0.010    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/globals.py:194(__bool__)
+     5320    0.002    0.000    0.010    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:113(__exit__)
+     3990    0.005    0.000    0.010    0.000 {method 'remove' of 'set' objects}
+    19950    0.006    0.000    0.010    0.000 <string>:1(<lambda>)
+     1330    0.009    0.000    0.009    0.000 {method 'unsqueeze' of 'torch._C.TensorBase' objects}
+    16217    0.007    0.000    0.009    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/collections/__init__.py:1134(__iter__)
+    18620    0.008    0.000    0.009    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/interleaving.py:133(_invoker_group)
+     1330    0.007    0.000    0.009    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/import_utils.py:2135(is_torch_fx_proxy)
+    38827    0.009    0.000    0.009    0.000 {built-in method builtins.iter}
+    16217    0.006    0.000    0.008    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:2949(_is_valid_text_input)
+     3990    0.007    0.000    0.008    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:153(__init__)
+    17290    0.008    0.000    0.008    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/dataclasses.py:1250(<genexpr>)
+     1330    0.002    0.000    0.008    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1212(get_mask_sizes)
+     1344    0.000    0.000    0.008    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/tokenize.py:323(read_or_stop)
+     2660    0.004    0.000    0.008    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:310(ismethoddescriptor)
+    15960    0.008    0.000    0.008    0.000 {built-in method _operator.getitem}
+       14    0.008    0.001    0.008    0.001 {method 'readline' of '_io.BufferedReader' objects}
+     2660    0.003    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:354(convert_tokens_to_ids)
+     3990    0.002    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:481(<genexpr>)
+     2660    0.006    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/_weakrefset.py:53(_commit_removals)
+     1330    0.001    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:648(__len__)
+     3990    0.004    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1288(is_sliding)
+     5320    0.007    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:464(__setitem__)
+     1330    0.005    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1283(is_compileable)
+     1330    0.004    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2075(_signature_is_functionlike)
+     1330    0.006    0.000    0.007    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/functools.py:393(__get__)
+     7980    0.003    0.000    0.007    0.000 {built-in method builtins.any}
+    19950    0.007    0.000    0.007    0.000 {method 'index' of 'list' objects}
+     1330    0.006    0.000    0.006    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:149(get_mask_sizes)
+    83804    0.006    0.000    0.006    0.000 {built-in method builtins.ord}
+    20207    0.006    0.000    0.006    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/import_utils.py:390(is_torch_available)
+    16217    0.006    0.000    0.006    0.000 <frozen _collections_abc>:812(__init__)
+     3990    0.006    0.000    0.006    0.000 {method 'sub' of 're.Pattern' objects}
+     1344    0.003    0.000    0.006    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/tokenize.py:329(find_cookie)
+    21281    0.006    0.000    0.006    0.000 {method 'join' of 'str' objects}
+    17290    0.005    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/_reduction.py:8(get_enum)
+    18620    0.005    0.000    0.005    0.000 {built-in method builtins.sorted}
+     1330    0.003    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:265(_supports_unicode)
+    16217    0.005    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:589(<listcomp>)
+     1330    0.003    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/interleaving.py:72(invoke)
+     1330    0.002    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:265(__iter__)
+     1330    0.002    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2738(replace)
+     1330    0.005    0.000    0.005    0.000 {method 'enable_padding' of 'tokenizers.Tokenizer' objects}
+    18620    0.005    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:1083(<genexpr>)
+     2660    0.002    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_fast.py:370(_convert_token_to_id_with_added_voc)
+    23940    0.005    0.000    0.005    0.000 {method 'pop' of 'list' objects}
+     1330    0.004    0.000    0.005    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/interleaver.py:36(__init__)
+     1330    0.005    0.000    0.005    0.000 {built-in method builtins.print}
+     1330    0.003    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/container.py:397(__iter__)
+     1330    0.003    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:735(unwrap)
+    18620    0.004    0.000    0.004    0.000 {method 'move_to_end' of 'collections.OrderedDict' objects}
+    21281    0.004    0.000    0.004    0.000 {built-in method __new__ of type object at 0x562ab1961000}
+     1331    0.003    0.000    0.004    0.000 <frozen importlib._bootstrap>:1207(_handle_fromlist)
+     7980    0.004    0.000    0.004    0.000 {method 'acquire' of '_multiprocessing.SemLock' objects}
+     1330    0.002    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:1745(currentframe)
+     1330    0.001    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/configuration_utils.py:383(use_return_dict)
+     1330    0.001    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:124(__eq__)
+       13    0.004    0.000    0.004    0.000 {built-in method io.open}
+     1331    0.002    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/_weakrefset.py:85(add)
+    32434    0.004    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:3988(_switch_to_input_mode)
+     1330    0.003    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1203(get_seq_length)
+     2660    0.003    0.000    0.004    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/_weakrefset.py:21(__enter__)
+    15973    0.004    0.000    0.004    0.000 {method 'endswith' of 'str' objects}
+    17290    0.003    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/protocols/base.py:24(execute)
+     1330    0.002    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:155(__init__)
+     1330    0.003    0.000    0.003    0.000 <frozen os>:756(encode)
+     1330    0.001    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:398(<lambda>)
+     3990    0.002    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1291(<listcomp>)
+     7981    0.003    0.000    0.003    0.000 {method 'acquire' of '_thread.RLock' objects}
+    14630    0.003    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:397(<genexpr>)
+     3990    0.003    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2205(parse_name)
+1356/1332    0.001    0.000    0.003    0.000 <frozen abc>:121(__subclasscheck__)
+     1329    0.002    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/_monitor.py:94(report)
+     1329    0.003    0.000    0.003    0.000 {method 'no_padding' of 'tokenizers.Tokenizer' objects}
+     2660    0.003    0.000    0.003    0.000 {method 'token_to_id' of 'tokenizers.Tokenizer' objects}
+     1330    0.002    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:273(__init__)
+     5320    0.003    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/generic.py:401(<genexpr>)
+     3990    0.003    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:151(wrapper_setattr)
+     1330    0.002    0.000    0.003    0.000 /gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_run_gpt2_nnsight.py:84(<listcomp>)
+    19950    0.003    0.000    0.003    0.000 {method 'isidentifier' of 'str' objects}
+     2660    0.002    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:186(disable_on_exception)
+     1330    0.003    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/torch/nn/modules/container.py:393(__len__)
+     1330    0.003    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2224(RewriteSymbolics)
+     1330    0.001    0.000    0.003    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/proxy.py:56(value)
+     2660    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:138(__getattr__)
+     1330    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:31(__init__)
+     7980    0.002    0.000    0.002    0.000 {built-in method time.time}
+     2660    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1158(__hash__)
+     1330    0.002    0.000    0.002    0.000 /gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_run_gpt2_nnsight.py:110(<listcomp>)
+    17290    0.002    0.000    0.002    0.000 {built-in method builtins.divmod}
+     1330    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2119(<listcomp>)
+     2660    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:221(__eq__)
+     1330    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/graph/graph.py:334(cleanup)
+     2660    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1154(_comparable)
+     1330    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/invoker.py:34(__init__)
+     1330    0.002    0.000    0.002    0.000 {built-in method utcfromtimestamp}
+     3990    0.002    0.000    0.002    0.000 {built-in method builtins.max}
+     1330    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1904(<dictcomp>)
+     1330    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/configuration_utils.py:364(output_attentions)
+    14630    0.002    0.000    0.002    0.000 {method 'span' of 're.Match' objects}
+    15960    0.002    0.000    0.002    0.000 {method 'keys' of 'collections.OrderedDict' objects}
+1356/1332    0.002    0.000    0.002    0.000 {built-in method _abc._abc_subclasscheck}
+     1330    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/utils/import_utils.py:737(is_torch_fx_available)
+     3990    0.002    0.000    0.002    0.000 {method 'encode' of 'str' objects}
+     1330    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/contexts/invoker.py:136(__exit__)
+     1343    0.002    0.000    0.002    0.000 {method 'startswith' of 'bytes' objects}
+     3990    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:107(__init__)
+     1330    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/modeling_utils.py:1804(get_head_mask)
+     3990    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:111(__format__)
+     3990    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:378(isfunction)
+     1330    0.002    0.000    0.002    0.000 /gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_run_gpt2_nnsight.py:111(<listcomp>)
+     2660    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/_weakrefset.py:17(__init__)
+     3990    0.002    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:167(colour)
+     1330    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:763(get_lock)
+     3990    0.001    0.000    0.002    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:292(isclass)
+     7980    0.001    0.000    0.001    0.000 {method 'release' of '_multiprocessing.SemLock' objects}
+     5320    0.001    0.000    0.001    0.000 {method '__contains__' of 'frozenset' objects}
+     4004    0.001    0.000    0.001    0.000 {method 'decode' of 'bytes' objects}
+     2660    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:268(__len__)
+     3990    0.001    0.000    0.001    0.000 {method 'values' of 'dict' objects}
+     2660    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:106(get_seq_length)
+     2660    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:505(isbuiltin)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1148(__del__)
+     3990    0.001    0.000    0.001    0.000 {built-in method _weakref.proxy}
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/globals.py:113(exit_global_tracing_context)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:251(_is_utf)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:283(ismodule)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/envoy.py:625(__iter__)
+     7981    0.001    0.000    0.001    0.000 {method 'release' of '_thread.RLock' objects}
+     2660    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1286(<genexpr>)
+     2660    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:300(ismethod)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/tokenization_utils_base.py:1046(pad_token_type_id)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/utils.py:281(_screen_shape_wrapper)
+     6650    0.001    0.000    0.001    0.000 {built-in method builtins.abs}
+     3990    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:226(__init__)
+     1330    0.001    0.000    0.001    0.000 {method 'difference' of 'set' objects}
+     3990    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:163(colour)
+     1331    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:575(is_set)
+     3990    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2734(kind)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/backends/base.py:18(__init__)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1903(<dictcomp>)
+     1330    0.001    0.000    0.001    0.000 {built-in method sys.getrecursionlimit}
+     1330    0.001    0.000    0.001    0.000 {method 'keys' of 'dict' objects}
+     3990    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2722(name)
+     1334    0.001    0.000    0.001    0.000 {built-in method builtins.min}
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/protocols/intervention.py:214(execute)
+     1330    0.001    0.000    0.001    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/graph/graph.py:52(alive)
+     1357    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+     2660    0.000    0.000    0.000    0.000 {built-in method builtins.callable}
+     1330    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/masking_utils.py:180(prepare_padding_mask)
+       13    0.000    0.000    0.000    0.000 {method 'readlines' of '_io._IOBase' objects}
+     1330    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:3015(parameters)
+     1330    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/inspect.py:2726(default)
+     1330    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/intervention/base.py:474(_batch)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:740(compile)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:90(__init__)
+     1330    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/transformers/cache_utils.py:1908(parse_layer_args_from_model_config)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:116(create_mp_lock)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/multiprocessing/context.py:70(RLock)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/_monitor.py:30(__init__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/multiprocessing/synchronize.py:193(__init__)
+     1330    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/nnsight/tracing/contexts/base.py:63(__enter__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/multiprocessing/synchronize.py:50(__init__)
+     1330    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:1302(<lambda>)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:979(parse)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:945(start)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:456(_parse_sub)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:573(_code)
+       13    0.000    0.000    0.000    0.000 {method '__exit__' of '_io._IOBase' objects}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:611(wait)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:516(_parse)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:295(wait)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/joblib/externals/loky/backend/__init__.py:7(_make_name)
+        4    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.lock' objects}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/tempfile.py:154(__next__)
+       32    0.000    0.000    0.000    0.000 <frozen codecs>:319(decode)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:856(__init__)
+      2/1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:37(_compile)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/tempfile.py:143(rng)
+        1    0.000    0.000    0.000    0.000 {built-in method _thread.start_new_thread}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/ctypes/__init__.py:386(__getattr__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:511(_compile_info)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/ctypes/__init__.py:393(__getitem__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/random.py:119(__init__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/random.py:128(seed)
+       13    0.000    0.000    0.000    0.000 /gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_run_gpt2_nnsight.py:59(<lambda>)
+       32    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/multiprocessing/util.py:174(register_after_fork)
+        1    0.000    0.000    0.000    0.000 {function Random.seed at 0x1538a97fa980}
+        2    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:562(__init__)
+        2    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/enum.py:1525(__and__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/random.py:480(choices)
+       13    0.000    0.000    0.000    0.000 <frozen codecs>:309(__init__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/weakref.py:164(__setitem__)
+       16    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:261(get)
+       22    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:168(__getitem__)
+        2    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:243(__init__)
+      2/1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:178(getwidth)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/random.py:493(<listcomp>)
+       17    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:240(__next)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:436(_get_literal_prefix)
+        6    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/enum.py:1507(_get_value)
+       15    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:176(append)
+       25    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/contextlib.py:32(__subclasshook__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:231(__init__)
+        2    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:376(_escape)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:243(_optimize_charset)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:407(_generate_overlap_table)
+       13    0.000    0.000    0.000    0.000 {method 'seek' of '_io.BufferedReader' objects}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/multiprocessing/context.py:237(get_context)
+       13    0.000    0.000    0.000    0.000 <frozen codecs>:260(__init__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/multiprocessing/synchronize.py:90(_make_methods)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:216(_compile_charset)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:1324(_make_invoke_excepthook)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:398(_simple)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:1453(current_thread)
+        4    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:164(__len__)
+        2    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:570(isstring)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/weakref.py:347(__new__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:1221(daemon)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:271(__enter__)
+        2    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:113(__init__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/multiprocessing/context.py:197(get_start_method)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:286(_is_owned)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:1206(daemon)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:77(__init__)
+        2    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:293(tell)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:274(__exit__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:811(_newname)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/weakref.py:352(__init__)
+        8    0.000    0.000    0.000    0.000 {method 'random' of '_random.Random' objects}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:280(_release_save)
+        1    0.000    0.000    0.000    0.000 {built-in method _sre.compile}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:963(fix_flags)
+        2    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:83(groups)
+        2    0.000    0.000    0.000    0.000 {built-in method posix.getpid}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/threading.py:283(_acquire_restore)
+        3    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+        8    0.000    0.000    0.000    0.000 {built-in method math.floor}
+        3    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:256(match)
+        1    0.000    0.000    0.000    0.000 {method 'find' of 'bytearray' objects}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/tqdm/std.py:98(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/multiprocessing/util.py:48(debug)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        2    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_parser.py:172(__setitem__)
+        1    0.000    0.000    0.000    0.000 /home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/re/_compiler.py:428(_get_iscased)
+        1    0.000    0.000    0.000    0.000 {built-in method atexit.register}
+        1    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
+        1    0.000    0.000    0.000    0.000 {method 'append' of 'collections.deque' objects}
+        1    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.RLock' objects}
+        1    0.000    0.000    0.000    0.000 {built-in method _thread.get_ident}
+        1    0.000    0.000    0.000    0.000 {method 'release' of '_thread.lock' objects}
+        1    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+
+
