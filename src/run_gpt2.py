@@ -14,7 +14,7 @@ from config import HUFFINGFACE_KEY
 # <ERIK CODE>
 import unicodedata
 # </ERIK CODE>
-
+print(torch.version.cuda)
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 parser = argparse.ArgumentParser()
 parser.add_argument("-m", "--model", required=True)
@@ -28,6 +28,8 @@ parser.add_argument("-c", "--cache", default="~/_cache/huggingface/hub")
 parser.add_argument("--prefix",default="")
 #</ERIK CODE>
 args = parser.parse_args()
+
+
 
 @torch.no_grad()
 def main():

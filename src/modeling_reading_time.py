@@ -48,7 +48,8 @@ def modeling(data, layer_id, target_file, df_original, is_clause_finals):
     if args.data in ["DC", "NS", "NS_MAZE", "UCL", "Fillers", "ZuCO"]:
         df["is_clause_final"] = df_original.apply(lambda x: is_clause_finals[str(x["article"])][x["sent_id"]][x["tokenN_in_sent"]], axis=1)
     
-
+    a = data2targets
+    b = args.data
     for target_name in data2targets[args.data]:
         if args.data == "NS_MAZE":
              output_path = target_file + f".result.layer{layer_id}.MAZE_{target_name}"
@@ -107,7 +108,7 @@ def modeling(data, layer_id, target_file, df_original, is_clause_finals):
 
             y_baseline, X_baseline = dmatrices(baseline_formula, data=target_df, return_type='dataframe')
             mod_baseline = sm.OLS(y_baseline, X_baseline)
-            res_baseline = mod_baseline.fit() 
+            res_baseline = mod_baseline.fit()
 
         with open(output_path, "w") as f:
             f.write(f"delta loglik: {res.llf - res_baseline.llf}\n")
