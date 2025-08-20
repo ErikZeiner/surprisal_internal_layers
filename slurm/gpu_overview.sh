@@ -2,9 +2,9 @@
 #SBATCH --partition=gpu-single
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:A100:4
-#SBATCH --time=2:00:00
-#SBATCH --mem=64G
+#SBATCH --gres=gpu:A100:6
+#SBATCH --time=4:00:00
+#SBATCH --mem=128G
 
 module load devel/cuda/11.6
 module load devel/miniforge
@@ -28,7 +28,7 @@ prefix="helix"
 python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d Fillers
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d S_N400 &
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d ZuCO &
-#python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-30b -d Fillers &
+python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-30b -d Fillers
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-30b -d UCL &
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-66b -d M_N400 &
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-66b -d ZuCO &

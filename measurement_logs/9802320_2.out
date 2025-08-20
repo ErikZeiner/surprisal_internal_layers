@@ -1,0 +1,29 @@
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/wandb/sdk/launch/builder/build.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_run_gpt2_transformer_lens.py", line 125, in <module>
+    main()
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_run_gpt2_transformer_lens.py", line 45, in main
+    gpt2_model = HookedTransformer.from_pretrained(args.model, device=device,cache_dir=args.cache,     fold_ln=False,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformer_lens/HookedTransformer.py", line 1370, in from_pretrained
+    state_dict = loading.get_pretrained_state_dict(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformer_lens/loading_from_pretrained.py", line 1939, in get_pretrained_state_dict
+    hf_model = AutoModelForCausalLM.from_pretrained(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformers/models/auto/auto_factory.py", line 600, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformers/modeling_utils.py", line 317, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformers/modeling_utils.py", line 4948, in from_pretrained
+    with safe_open(checkpoint_files[0], framework="pt") as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+safetensors_rust.SafetensorError: Error while deserializing header: invalid JSON in header: EOF while parsing a value at line 1 column 0

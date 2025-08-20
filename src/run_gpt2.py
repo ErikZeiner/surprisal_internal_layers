@@ -152,7 +152,7 @@ def main():
     sortby = SortKey.CUMULATIVE
     ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
     ps.print_stats()
-    with open(f'measurement_orig_{args.model}_{args.data}_{args.method}.txt', 'w') as file:
+    with open(f'measurement_orig_{args.model.replace("/","-")}_{args.data}_{args.method}.txt', 'w') as file:
         file.writelines(s.getvalue())
     #</ERIK CODE>
 
