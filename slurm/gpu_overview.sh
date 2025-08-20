@@ -4,11 +4,11 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:A100:4
 #SBATCH --time=2:00:00
-#SBATCH --mem=24gb
+#SBATCH --mem=64G
 
+module load devel/cuda/11.6
 module load devel/miniforge
 conda activate surprisal
-module load devel/cuda
 
 script="run_gpt2.py"
 model="gpt2"

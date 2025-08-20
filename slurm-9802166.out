@@ -1,0 +1,4 @@
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal/lib/python3.11/site-packages/wandb/sdk/launch/builder/build.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:33<01:07, 33.59s/it]/var/spool/slurm/job9802166/slurm_script: line 28: 1012965 Killed                  python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d Fillers
+slurmstepd: error: Detected 1 oom_kill event in StepId=9802166.batch. Some of the step tasks have been OOM Killed.
