@@ -154,9 +154,9 @@ for (target_file in target_files) {
 
     for (target_name in unlist(data2targets[[args$data]])) {
       if (args$data == "NS_MAZE") {
-        output_path <- paste0(target_file, ".BayesFactor.layer", layer_id, ".MAZE_", target_name)
+        output_path <- paste0(target_file, ".BayesFactor.layer", layer_id, ".MAZE_", target_name,".txt")
       } else {
-        output_path <- paste0(target_file, ".BayesFactor.layer", layer_id, "..", gsub(" ", "_", target_name))
+        output_path <- paste0(target_file, ".BayesFactor.layer", layer_id, "..", gsub(" ", "_", target_name),".txt")
       }
 
       if (any(file.exists(output_path)) && !args$overwrite) {
