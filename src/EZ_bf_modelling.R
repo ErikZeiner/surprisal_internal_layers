@@ -6,50 +6,24 @@ library(readr)
 library(jsonlite)
 library(fs)
 
+source("EZ_lists_visualisation.R")
+
 option_list <- list(
-  make_option(c("-i", "--input_dir"), type = "character", help = "Input directory", metavar = "DIR", default = "results/logit-lens/"),
+  make_option(c("-i", "--input_dir"), type = "character", help = "Input directory", metavar = "DIR", default = "results_orig/logit-lens/DC"),
   make_option(c("-d", "--data"), type = "character", default = "DC", help = "Data type [default %default]"),
-  make_option(c("-o", "--overwrite"), action = "store_true", default = FALSE, help = "Overwrite existing files")
+  make_option(c("-o", "--overwrite"), action = "store_true", default = TRUE, help = "Overwrite existing files")
 )
 
 opt_parser <- OptionParser(option_list = option_list)
+
 args <- parse_args(opt_parser)
 args$source <- sub("/.*", "", args$input_dir)
 
 # XXX FOR DEBUGING XXX
-# args <- list()
-# args$input_dir <- paste0(args$source,"/logit-lens/Fillers/")
-# args$data <- 'Fillers'
+# args$input_dir <- paste0(args$source, "/logit-lens/ZuCO/")
+# args$data <- 'ZuCO'
 # args$overwrite <- TRUE
 
-data2targets <- list(
-  DC = list("time", "time_last_token"),
-  NS = list("time", "time_last_token"),
-  NS_MAZE = list("time", "time_last_token"),
-  UCL = list("ELAN", "LAN", "N400", "EPNP", "P600", "PNP",
-             "RTfirstpass", "RTreread", "RTgopast", "self_paced_reading_time",
-             "RTfirstpass_last_token", "RTreread_last_token", "RTgopast_last_token",
-             "self_paced_reading_time_last_token", "N400_last_token", "P600_last_token",
-             "EPNP_last_token", "PNP_last_token", "ELAN_last_token", "LAN_last_token"),
-  Fillers = list("SPR_RT", "MAZE_RT", "FPRT", "SPR_RT_last_token", "MAZE_RT_last_token", "FPRT_last_token"),
-  S_N400 = list('Federmeier et al. (2007)', 'Hubbard et al. (2019)', 'Szewczyk & Federmeier (2022)',
-                'Szewczyk et al. (2022)', 'Wlotko & Federmeier (2012)'),
-  M_N400 = list('C3', 'C4', 'CP3', 'CP4', 'CPz', 'Cz', 'P3', 'P4', 'Pz', 'all'),
-  # `MECO/du` = list("time"),
-  # `MECO/ee` = list("time"),
-  # `MECO/en` = list("time"),
-  # `MECO/fi` = list("time"),
-  # `MECO/ge` = list("time"),
-  # `MECO/gr` = list("time"),
-  # `MECO/he` = list("time"),
-  # `MECO/it` = list("time"),
-  # `MECO/ko` = list("time"),
-  # `MECO/no` = list("time"),
-  # `MECO/ru` = list("time"),
-  # `MECO/sp` = list("time"),
-  # `MECO/tr` = list("time"),
-  ZuCO = list("time", "N400", "time_last_token", "N400_last_token")
-)
 
 df_original <- read_csv(paste0("data/", args$data, "/all.txt.averaged_rt.annotation"))
 df_original <- df_original %>%
@@ -104,7 +78,7 @@ for (target_file in target_files) {
     # XXX FOR DEBUGING XXX
     # target_file <- paste0(args$source,"/logit-lens/Fillers/opt-125m/helix_surprisal.json")
     # article2interest <- fromJSON(target_file, simplifyVector = FALSE, simplifyDataFrame = FALSE)
-    # # str(article2interest)
+    # str(article2interest)
     # layer_id <- "0"
     # data <- article2interest[[layer_id]]
 
@@ -154,9 +128,9 @@ for (target_file in target_files) {
 
     for (target_name in unlist(data2targets[[args$data]])) {
       if (args$data == "NS_MAZE") {
-        output_path <- paste0(target_file, ".BayesFactor.layer", layer_id, ".MAZE_", target_name,".txt")
+        output_path <- paste0(target_file, ".BayesFactor.layer", layer_id, ".MAZE_", target_name)
       } else {
-        output_path <- paste0(target_file, ".BayesFactor.layer", layer_id, "..", gsub(" ", "_", target_name),".txt")
+        output_path <- paste0(target_file, ".BayesFactor.layer", layer_id, ".", gsub(" ", "_", target_name))
       }
 
       if (any(file.exists(output_path)) && !args$overwrite) {
@@ -179,8 +153,9 @@ for (target_file in target_files) {
                           "LAN_last_token", "Federmeier et al. (2007)", "Hubbard et al. (2019)",
                           "Szewczyk & Federmeier (2022)", "Szewczyk et al. (2022)", "Wlotko & Federmeier (2012)",
                           "C3", "C4", "CP3", "CP4", "CPz", "Cz", "P3", "P4", "Pz", "all"))) {
-        target_df <- target_df[target_df[[target]] > 0,]
+        target_df <- target_df[target_df[[target]] > 0, ]
       }
+      target_df <- target_df[!is.na(target_df[[target]]), ]
 
       if (args$data == "S_N400") {
         target_df <- subset(target_df, dataset == target)
@@ -218,18 +193,22 @@ for (target_file in target_files) {
       # target_df_std$time <- as.numeric(scale(target_df$time))
       # summary(target_df$time)
       # sd(target_df$time)
+
+      # if(any(is.na(as.data.frame(target_df)))){
+      #   a <- as.data.frame(target_df)[!complete.cases(as.data.frame(target_df)), ]
+      # }
       if (args$data == "M_N400" && target == "all") {
-        #TODO: do I even need the distinction for mixedlm?
+        #TODO: do I even need the distinction for mixedlm? bayesFactor package seems to handle both with lmBF
         # identical for now
         bfInterest <- lmBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
-        bfBaseline <- lmBF(formula = as.formula(paste(baseline_formula)), data = as.data.frame(target_df))
+        bfBaseline <- lmBF(formula = as.formula(paste(baseline_formula)), data = as.data.frame(target_df),rscaleEffects = c( interest = 1 ))
       } else {
         #orig had OLS
+        formula <- "time ~ interest+ length"
+        baseline_formula <- "time ~ length"
+
         bfInterest <- lmBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
         bfBaseline <- lmBF(formula = as.formula(paste(baseline_formula)), data = as.data.frame(target_df))
-        #
-        # reg <- regressionBF(formula = as.formula(paste(formula)), data = as.data.frame(target_df))
-        # reg
       }
       bf <- bfInterest / bfBaseline
       bf_df <- as.data.frame(bf)

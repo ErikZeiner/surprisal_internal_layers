@@ -1,3 +1,27 @@
+data2targets = list(
+    "DC" = list("time", "time_last_token"),
+    "NS" = list("time", "time_last_token"),
+    "NS_MAZE" = list("time", "time_last_token"),
+    "UCL" = list("ELAN","LAN","N400","EPNP","P600","PNP","RTfirstpass", "RTreread", "RTgopast", "self_paced_reading_time", "RTfirstpass_last_token", "RTreread_last_token", "RTgopast_last_token", "self_paced_reading_time_last_token", "N400_last_token", "P600_last_token", "EPNP_last_token", "PNP_last_token", "ELAN_last_token", "LAN_last_token"),
+    "Fillers" = list("SPR_RT", "MAZE_RT", "FPRT", "SPR_RT_last_token", "MAZE_RT_last_token", "FPRT_last_token"),
+    "S_N400" = list('Federmeier et al. (2007)', 'Hubbard et al. (2019)', 'Szewczyk & Federmeier (2022)', 'Szewczyk et al. (2022)', 'Wlotko & Federmeier (2012)'),
+    "M_N400" = list('C3', 'C4', 'CP3', 'CP4', 'CPz', 'Cz', 'P3', 'P4', 'Pz', 'all'),
+    "MECO\\/du" = list("time"),
+    "MECO\\/ee" = list("time"),
+    "MECO\\/en" = list("time"),
+    "MECO\\/fi" = list("time"),
+    "MECO\\/ge" = list("time"),
+    "MECO\\/gr" = list("time"),
+    "MECO\\/he" = list("time"),
+    "MECO\\/it" = list("time"),
+    "MECO\\/ko" = list("time"),
+    "MECO\\/no" = list("time"),
+    "MECO\\/ru" = list("time"),
+    "MECO\\/sp" = list("time"),
+    "MECO\\/tr" = list("time"),
+    "ZuCO" = list("time", "N400", "time_last_token", "N400_last_token")
+)
+
 models <- c(
     "gpt2",
     "gpt2-medium",

@@ -1,12 +1,13 @@
 SOURCE="results_orig"
 
-Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/NS" -d NS_MAZE -o
-Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/NS" -d NS -o
-Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/DC" -d DC -o
+#Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/NS" -d NS_MAZE -o
+#Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/NS" -d NS -o
+#Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/DC" -d DC -o
 Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/UCL" -d UCL -o
 Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/Fillers" -d Fillers -o
 Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/S_N400" -d S_N400 -o
 Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/M_N400" -d M_N400 -o
+Rscript src/EZ_bf_modelling.R -i "$SOURCE/logit-lens/ZuCO" -d ZuCO -o
 
 #Rscript src/EZ_bf_modelling.R -i "$SOURCE/tuned-lens/NS" -d NS_MAZE -o
 #Rscript src/EZ_bf_modelling.R -i "$SOURCE/tuned-lens/NS" -d NS -o

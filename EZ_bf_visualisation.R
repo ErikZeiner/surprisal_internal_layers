@@ -6,14 +6,14 @@ library(ggplot2)
 
 source("EZ_lists_visualisation.R")
 
-
-get_results <- function(dir, target) {
+get_results <- function(models,dir, target) {
   df <- tibble(
     data = character(),
     model = character(),
     method = character(),
     layer = numeric(),
     bayes_factor = numeric(),
+    log10_bf = numeric(),
     error = numeric()
   )
   for (i in 1:length(models)) {
@@ -22,7 +22,7 @@ get_results <- function(dir, target) {
     a <- file.path(dir, model)
     files <- list.files(
       path = file.path(dir, model),
-      pattern = paste0("^.*surprisal.json.BayesFactor.layer.*", target, ".*$"),
+      pattern = paste0("^surprisal\\.json\\.BayesFactor\\.layer[0-9]*\\.",target,"$"),
       full.names = TRUE)
 
     for (file in files) {
@@ -34,7 +34,8 @@ get_results <- function(dir, target) {
 
       result_text <- readLines(file)
       bayesFactor <- as.numeric(strsplit(result_text[1], ": ")[[1]][2])
-      error <- as.numeric(strsplit(result_text[2], ": ")[[1]][2])
+      log10_bf <- as.numeric(strsplit(result_text[2], ": ")[[1]][2])
+      error <- as.numeric(strsplit(result_text[3], ": ")[[1]][2])
 
       df <- df %>% add_row(
         data = data_name,
@@ -42,6 +43,7 @@ get_results <- function(dir, target) {
         method = method,
         layer = as.numeric(layer),
         bayes_factor = bayesFactor,
+        log10_bf = log10_bf,
         error = error
       )
     }
@@ -51,11 +53,11 @@ get_results <- function(dir, target) {
   df <- df %>%
     group_by(model) %>%
     mutate(
-      max_layer = max(layer),
+      max_layer = max(layer, na.rm = TRUE),
       min_layer = min(layer),
       normalized_layer = (layer - min_layer) / (max_layer - min_layer),
-      measurement = data2method[[data_name]],
-      name = data2stimuli[[data_name]],
+      measurement = data2method[data],
+      name = data2stimuli[data],
       params = models2params[model],
       log_params = log10(models2params[model]),
     ) %>%
@@ -66,12 +68,12 @@ get_results <- function(dir, target) {
     mutate(
       last_bf = bayes_factor[which.max(layer)],
       last_error = error[which.max(layer)],
-      max_bf = max(bayes_factor)
+      max_bf = max(bayes_factor, na.rm = TRUE)
     )
   return(df)
 }
 
-print_table <- function(df, filter_model = c(), data) {
+print_table <- function(df, filter_model = c(), data, log=FALSE) {
   layer_results <- data.frame(
     data = character(),
     stimuli = character(),
@@ -95,7 +97,19 @@ print_table <- function(df, filter_model = c(), data) {
 
       range_rows <- sub_df[sub_df$normalized_layer >= r[1] & sub_df$normalized_layer <= r[2],]
 
-
+      if (log){
+        layer_results <- rbind(layer_results, data.frame(
+        data = d,
+        stimuli = data2stimuli[[d]],
+        method = method,
+        measurement = data2method[[d]],
+        name = paste0(data2method[[d]], data2cite[[d]]),
+        range = paste0(r[1], "-", r[2]),
+        range_bf = mean(range_rows$log10_bf, na.rm = TRUE),
+        stringsAsFactors = FALSE
+      ))
+      }
+      else{
       layer_results <- rbind(layer_results, data.frame(
         data = d,
         stimuli = data2stimuli[[d]],
@@ -106,6 +120,7 @@ print_table <- function(df, filter_model = c(), data) {
         range_bf = mean(range_rows$bayes_factor, na.rm = TRUE),
         stringsAsFactors = FALSE
       ))
+      }
     }
     #}
   }
@@ -114,7 +129,7 @@ print_table <- function(df, filter_model = c(), data) {
     filter(stimuli %in% c("NS", "DC", "UCL", "Fillers", "ZuCO", "Michaelov+,\\n2024",
                           "Federmeier+,\\n2007", "W&F,2012", "Hubbard+,\\n2019",
                           "S&F,2022", "Szewczyk+,\\n2022"))
-  desired_order <- c("NS", "DC", "UCL", "Fillers", "ZuCO", "Michaelov+,\\n2024",
+  desired_order <- c("DC", "NS", "ZuCO", "UCL", "Fillers", "Michaelov+,\\n2024",
                      "Federmeier+,\\n2007", "W&F,2012", "Hubbard+,\\n2019",
                      "S&F,2022", "Szewczyk+,\\n2022")
   table$stimuli <- factor(table$stimuli, levels = desired_order, ordered = TRUE)
@@ -138,20 +153,101 @@ visualise <- function(models, dir, metric, target, normalize_x = True, family = 
 }
 
 
-#get_results for models to build a massive all dataset which then gets run with print table
-df <- get_results(dir = "results_orig/logit-lens/Fillers", target = "MAZE_RT")
-a <- df[df$model %in% df$model[startsWith(df$model, "pythia")],]
-ggplot(df[df$measurement == "MAZE",], aes(x = layer, y = log10(bayes_factor), colour = model)) +
-  geom_point()+
-  facet_grid(~measurement)
-
-
 black_list <- c("M_N400_C3", "M_N400_C4", "M_N400_CP3", "M_N400_CP4", "M_N400_CPz", "M_N400_Cz", "M_N400_P3", "M_N400_P4", "M_N400_Pz", "UCL_RTreread", "UCL_RTreread_last_token", "UCL_PNP", "UCL_PNP_last_token", "UCL_LAN", "UCL_LAN_last_token", "UCL_EPNP", "UCL_EPNP_last_token", "UCL_ELAN", "UCL_ELAN_last_token", "Fillers_RRT", "UCL_P600", "UCL_P600_last_token", "UCL_RTgopast", "UCL_N400_last_token",
                 "DC_time_last_token", "NS_time_last_token", "NS_MAZE_time_last_token", "Fillers_SPR_RT_last_token", "Fillers_FPRT_last_token", "Fillers_RRT_last_token", "Fillers_MAZE_RT_last_token", "UCL_RTfirstpass_last_token", "UCL_RTreread_last_token", "UCL_RTgopast_last_token", "UCL_self_paced_reading_time_last_token")
 
-df <- rbind(df,get_results(dir = "results_orig/logit-lens/DC", target = "time"))
+
+
+
+logit_lens_results <-list(
+    # logit lens
+get_results(models, "results_orig/logit-lens/DC", target="time"),
+get_results(models, "results_orig/logit-lens/DC", target="time_last_token"),
+get_results(models, "results_orig/logit-lens/NS", target="time"),
+get_results(models, "results_orig/logit-lens/NS", target="time_last_token"),
+get_results(models, "results_orig/logit-lens/NS", target="MAZE_time"),
+get_results(models, "results_orig/logit-lens/NS", target="MAZE_time_last_token"),
+get_results(models, "results_orig/logit-lens/Fillers", target="SPR_RT"),
+get_results(models, "results_orig/logit-lens/Fillers", target="FPRT"),
+get_results(models, "results_orig/logit-lens/Fillers", target="MAZE_RT"),
+get_results(models, "results_orig/logit-lens/Fillers", target="SPR_RT_last_token"),
+get_results(models, "results_orig/logit-lens/Fillers", target="FPRT_last_token"),
+get_results(models, "results_orig/logit-lens/Fillers", target="MAZE_RT_last_token"),
+get_results(models, "results_orig/logit-lens/M_N400", target="all"),
+get_results(models, "results_orig/logit-lens/S_N400", target="Federmeier_et_al._(2007)"),
+get_results(models, "results_orig/logit-lens/S_N400", target="Hubbard_et_al._(2019)"),
+get_results(models, "results_orig/logit-lens/S_N400", target="Szewczyk_&_Federmeier_(2022)"),
+get_results(models, "results_orig/logit-lens/S_N400", target="Szewczyk_et_al._(2022)"),
+get_results(models, "results_orig/logit-lens/S_N400", target="Wlotko_&_Federmeier_(2012)"),
+get_results(models, "results_orig/logit-lens/UCL", target="ELAN"),
+get_results(models, "results_orig/logit-lens/UCL", target="ELAN_last_token"),
+get_results(models, "results_orig/logit-lens/UCL", target="EPNP"),
+get_results(models, "results_orig/logit-lens/UCL", target="EPNP_last_token"),
+get_results(models, "results_orig/logit-lens/UCL", target="LAN"),
+get_results(models, "results_orig/logit-lens/UCL", target="LAN_last_token"),
+get_results(models, "results_orig/logit-lens/UCL", target="N400"),
+get_results(models, "results_orig/logit-lens/UCL", target="N400_last_token"),
+get_results(models, "results_orig/logit-lens/UCL", target="P600"),
+get_results(models, "results_orig/logit-lens/UCL", target="PNP"),
+get_results(models, "results_orig/logit-lens/UCL", target="RTfirstpass"),
+get_results(models, "results_orig/logit-lens/UCL", target="RTfirstpass_last_token"),
+get_results(models, "results_orig/logit-lens/UCL", target="RTreread"),
+get_results(models, "results_orig/logit-lens/UCL", target="RTgopast"),
+get_results(models, "results_orig/logit-lens/UCL", target="self_paced_reading_time"),
+get_results(models, "results_orig/logit-lens/UCL", target="self_paced_reading_time_last_token"),
+
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/du", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/ee", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/en", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/fi", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/ge", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/gr", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/he", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/it", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/ko", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/no", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/ru", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/sp", target="time"),
+# get_results(multilingual_models, "results_orig/logit-lens/MECO/tr", target="time"),
+get_results(models, "results_orig/logit-lens/ZuCO", target="time"),
+get_results(models, "results_orig/logit-lens/ZuCO", target="N400")
+)
+
+df <- bind_rows(logit_lens_results)
+
+
+target <- "MAZE_time"
+
+a<-df[df$data=="DC_time_last_token" & df$model == "gpt2", ]
+# a <- df[df$model %in% df$model[startsWith(df$model, "pythia")],]
+#df[grepl("example", df$col_name), ]
+
+selected_df <- df %>%
+  filter(method=="logit-lens") %>%
+  filter(grepl("gpt", model)) %>%
+  filter(name %in% c("DC", "NS"))
+
+ggplot(selected_df, aes(x = layer, y = log10(bayes_factor), colour = model)) +
+  geom_point()+
+  geom_line()+
+  facet_grid(~data)
+ggplot(df, aes(x = layer, y = log10(bayes_factor), colour = model)) +
+  geom_point()+
+  geom_line()+
+  facet_grid(~measurement)
+
+dll <- read.csv('results_orig/all_results.csv')
+
+dll <- dll %>%
+  filter(method=="logit-lens") %>%
+  filter(grepl("gpt", model)) %>%
+  filter(name %in% c("DC", "NS"))
+
+ggplot(dll, aes(x = layer, y = loglik, colour = model)) +
+  geom_point()+
+  geom_line()+
+  facet_grid(~data)
+df <- rbind(df,get_results(models,dir = "results_orig/logit-lens/DC", target = "time"))
+df <- rbind(df,get_results(models,dir = "results_orig/logit-lens/DC", target = "time"))
 data <- setdiff(all_datasets, black_list)
-table <- print_table(df, c(), data)
-
-
-# TODO: What is the blacklist for?
+table <- print_table(df, c(), data,log=TRUE)
