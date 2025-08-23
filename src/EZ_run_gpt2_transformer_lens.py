@@ -52,7 +52,8 @@ def main():
 
     loss_fct = CrossEntropyLoss(ignore_index=-100, reduction="none")
     # bos_string = hf_tokenizer.decode(hf_model.config.bos_token_id)
-    bos_string = tokenizer.decode(gpt2_model.config.bos_token_id)
+    # bos_string = tokenizer.decode(gpt2_model.config.bos_token_id)
+    bos_string = tokenizer.decode(tokenizer.bos_token_id)
     
     article2surprisals = defaultdict(lambda: defaultdict(list))
     # article2entropies = defaultdict(lambda: defaultdict(list))
