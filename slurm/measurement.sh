@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --array=1-7
+#SBATCH --array=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=cpu-single
@@ -12,13 +12,16 @@
 module load devel/miniforge
 conda activate surprisal-cpu
 
-datasets=("DC" "Fillers" "M_N400" "NS" "S_N400" "UCL" "ZuCO")
+datasets=("DC")
+#"Fillers" "M_N400" "NS" "S_N400" "UCL" "ZuCO")
 data=${datasets[$SLURM_ARRAY_TASK_ID-1]}
 prefix="helix"
 model="gpt2"
 
 #python src/run_gpt2.py -m $model -c "./_cashe/" --data $data --prefix $prefix &
 #python src/EZ_run_gpt2_nnsight.py -m $model -c "./_cashe/" --data $data --prefix $prefix &
-python src/EZ_run_gpt2_transformer_lens.py -m $model -c "./_cashe/" --data $data --prefix $prefix
+#python src/EZ_run_gpt2_transformer_lens.py -m $model -c "./_cashe_tl/" --data $data --prefix $prefix
 #wait
+python src/EZ_tl_test.py
+
 

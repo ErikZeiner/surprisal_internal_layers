@@ -25,7 +25,7 @@ prefix="helix"
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-6.7b -d UCL &
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d DC &
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d M_N400 &
-python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d Fillers
+#python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d Fillers
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d S_N400 &
 #python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-13b -d ZuCO &
 python src/$script -c "./_cashe/" --prefix $prefix -m facebook/opt-30b -d Fillers

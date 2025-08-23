@@ -1,0 +1,28 @@
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/torch/cuda/__init__.py:829: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/wandb/sdk/launch/builder/build.py:11: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+Traceback (most recent call last):
+  File "/gpfs/bwfor/home/tu/tu_tu/tu_zxolr37/surprisal_internal_layers/src/EZ_tl_test.py", line 3, in <module>
+    gpt2_model = HookedTransformer.from_pretrained(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformer_lens/HookedTransformer.py", line 1375, in from_pretrained
+    model = cls(
+            ^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformer_lens/HookedTransformer.py", line 165, in __init__
+    AutoTokenizer.from_pretrained(
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 1049, in from_pretrained
+    tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 903, in get_tokenizer_config
+    result = json.load(reader)
+             ^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/tu/tu_tu/tu_zxolr37/.conda/envs/surprisal-cpu/lib/python3.11/json/decoder.py", line 340, in decode
+    raise JSONDecodeError("Extra data", s, end)
+json.decoder.JSONDecodeError: Extra data: line 1 column 27 (char 26)
