@@ -42,7 +42,7 @@ def main():
 
     # hf_model = AutoModelForCausalLM.from_pretrained(args.model, token=access_token, cache_dir=args.cache)
     # hf_model.to(device).eval()
-    gpt2_model = HookedTransformer.from_pretrained(args.model, device=device,cache_dir=args.cache,     fold_ln=False,
+    gpt2_model = HookedTransformer.from_pretrained(args.model, device=device,cache_dir=args.cache,fold_ln=False,
     center_writing_weights=False,
     center_unembed=False)
     gpt2_model.eval()

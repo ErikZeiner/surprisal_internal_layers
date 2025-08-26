@@ -3,6 +3,24 @@ library(tibble)
 library(dplyr)
 library(tidyverse)
 library(ggplot2)
+library(aida)   # custom helpers: https://github.com/michael-franke/aida-package
+library(faintr) # custom helpers: https://michael-franke.github.io/faintr/index.html
+library(cspplot)
+
+
+# use the CSP-theme for plotting
+theme_set(theme_csp())
+
+# global color scheme from CSP
+project_colors = cspplot::list_colors() |> pull(hex)
+
+# setting theme colors globally
+scale_colour_discrete <- function(...) {
+  scale_colour_manual(..., values = project_colors)
+}
+scale_fill_discrete <- function(...) {
+  scale_fill_manual(..., values = project_colors)
+}
 
 source("EZ_lists_visualisation.R")
 
@@ -149,7 +167,10 @@ print_table <- function(df, filter_model = c(), data, log=FALSE) {
   return(final_table)
 }
 
-visualise <- function(models, dir, metric, target, normalize_x = True, family = c()) {
+visualise <- function(models, dir, target, family) {
+
+
+  # "../results/tuned-lens/DC", "surprisal", target="time", normalize_x=False, family=["gpt2"]
 }
 
 
@@ -225,28 +246,31 @@ a<-df[df$data=="DC_time_last_token" & df$model == "gpt2", ]
 selected_df <- df %>%
   filter(method=="logit-lens") %>%
   filter(grepl("gpt", model)) %>%
-  filter(name %in% c("DC", "NS"))
+  filter(name %in% c("DC"))
 
-ggplot(selected_df, aes(x = layer, y = log10(bayes_factor), colour = model)) +
-  geom_point()+
-  geom_line()+
-  facet_grid(~data)
-ggplot(df, aes(x = layer, y = log10(bayes_factor), colour = model)) +
-  geom_point()+
-  geom_line()+
-  facet_grid(~measurement)
+# ggplot(selected_df, aes(x = layer, y = log10(bayes_factor), colour = model, shape=data)) +
+#   geom_point()+
+#   geom_line()+
+#   facet_grid(.~data)
+
+ggplot(selected_df, aes(x = layer, y = log10(bayes_factor), colour = model, shape=data)) +
+  facet_grid(~measurement)+
+  geom_point(size=3)+
+  geom_line(aes(group = interaction(model, data)))
+
 
 dll <- read.csv('results_orig/all_results.csv')
 
 dll <- dll %>%
   filter(method=="logit-lens") %>%
   filter(grepl("gpt", model)) %>%
-  filter(name %in% c("DC", "NS"))
+  filter(name %in% c("DC"))
 
-ggplot(dll, aes(x = layer, y = loglik, colour = model)) +
-  geom_point()+
-  geom_line()+
-  facet_grid(~data)
+ggplot(dll, aes(x = layer, y = loglik, colour = model, shape=data)) +
+  facet_grid(~measurement)+
+  geom_point(size=3)+
+  geom_line(aes(group = interaction(model, data)))
+
 df <- rbind(df,get_results(models,dir = "results_orig/logit-lens/DC", target = "time"))
 df <- rbind(df,get_results(models,dir = "results_orig/logit-lens/DC", target = "time"))
 data <- setdiff(all_datasets, black_list)
