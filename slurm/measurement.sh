@@ -18,10 +18,10 @@
 data="DC"
 #data=${datasets[$SLURM_ARRAY_TASK_ID-1]}
 prefix="local"
-model="gpt2"
+model="opt-125m"
 
-#python src/run_gpt2.py -m $model -c "./_cashe/" --data $data --prefix $prefix &
-#python src/EZ_run_gpt2_nnsight.py -m $model -c "./_cashe/" --data $data --prefix $prefix &
+python src/run_gpt2.py -m $model -c "./_cashe/" --data $data --prefix $prefix
+python src/EZ_run_gpt2_nnsight.py -m $model -c "./_cashe/" --data $data --prefix $prefix
 python src/EZ_run_gpt2_transformer_lens.py -m $model -c "./_cashe_tl/" --data $data --prefix $prefix
 #wait
 #python src/EZ_tl_test.py
