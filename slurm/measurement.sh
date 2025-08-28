@@ -18,7 +18,7 @@
 data="DC"
 #data=${datasets[$SLURM_ARRAY_TASK_ID-1]}
 prefix="local"
-model="opt-125m"
+model="facebook/opt-125m"
 
 python src/run_gpt2.py -m $model -c "./_cashe/" --data $data --prefix $prefix
 python src/EZ_run_gpt2_nnsight.py -m $model -c "./_cashe/" --data $data --prefix $prefix
