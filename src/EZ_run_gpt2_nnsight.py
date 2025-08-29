@@ -2,6 +2,7 @@ import json
 import os
 import argparse
 import torch
+from accelerate.utils import filter_first_and_last_linear_layers
 
 from tqdm import tqdm
 from collections import defaultdict
@@ -87,6 +88,25 @@ def main():
             target_ids = encoded_sents[:, 1:].to(device)
 
             layer_logits = []
+
+            # if 'opt' in args.model:
+            #     layers = model.model.decoder.layers
+            #     token_embd = model.model.decoder.embed_tokens
+            #     pos_embd = model.model.decoder.embed_positions
+            #     final_layer= model.model.decoder.final_layer_norm
+            #     lm_head = model.lm_head
+            # elif 'pythia' in args.model:
+            #     layers = model.gpt_neox.layers
+            #     token_embd = model.gpt_neox.embed_in
+            #     pos_embd = torch.zeros_like(token_embd)
+            #     final_layer = model.gpt_neox.final_layer_norm
+            #     lm_head = model.embed_out
+            # else:
+            #     layers = model.transformer.h
+            #     token_embd = model.transformer.wte.output
+            #     pos_embd = model.transformer.wpe.output
+            #     final_layer = model.transformer.ln_f
+            #     lm_head = model.lm_head
             with model.trace(encoded_sents[:, :-1]) as tracer:
                 for layer_id, layer in enumerate(['token'] + list(model.transformer.h)):
                     if layer == 'token':
@@ -115,7 +135,10 @@ def main():
     sortby = SortKey.CUMULATIVE
     ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
     ps.print_stats()
-    with open(f'results/logit-lens/{args.data}/{args.model}/measurement_nn_{args.model.replace("/","-")}_{args.data}_{args.method}.txt','w') as file:
+    out_dir = f'results/logit-lens/{args.data}/{args.model}/'
+    os.makedirs(out_dir, exist_ok=True)
+
+    with open(os.path.join(out_dir, f'measurement_nn_{args.model.replace("/","-")}_{args.data}_{args.method}.txt'),'w') as file:
         file.writelines(s.getvalue())
 
     if not args.trial:

@@ -152,7 +152,10 @@ def main():
     sortby = SortKey.CUMULATIVE
     ps = pstats.Stats(pr, stream=s).sort_stats(sortby)
     ps.print_stats()
-    with open(f'results/logit-lens/{args.data}/{args.model}/measurement_orig_{args.model.replace("/","-")}_{args.data}_{args.method}.txt', 'w') as file:
+    out_dir = f'results/logit-lens/{args.data}/{args.model}/'
+    os.makedirs(out_dir, exist_ok=True)
+
+    with open(os.path.join(out_dir,f'measurement_orig_{args.model.replace("/", "-")}_{args.data}_{args.method}.txt'), 'w') as file:
         file.writelines(s.getvalue())
     #</ERIK CODE>
 
