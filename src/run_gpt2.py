@@ -155,7 +155,7 @@ def main():
     out_dir = f'results/logit-lens/{args.data}/{args.model}/'
     os.makedirs(out_dir, exist_ok=True)
 
-    with open(os.path.join(out_dir,f'measurement_orig_{args.model.replace("/", "-")}_{args.data}_{args.method}.txt'), 'w') as file:
+    with open(os.path.join(out_dir,f'measurement_orig_{args.prefix}_{args.model.replace("/", "-")}_{args.data}_{args.method}.txt'), 'w') as file:
         file.writelines(s.getvalue())
     #</ERIK CODE>
 

@@ -89,31 +89,33 @@ def main():
 
             layer_logits = []
 
-            # if 'opt' in args.model:
-            #     layers = model.model.decoder.layers
-            #     token_embd = model.model.decoder.embed_tokens
-            #     pos_embd = model.model.decoder.embed_positions
-            #     final_layer= model.model.decoder.final_layer_norm
-            #     lm_head = model.lm_head
-            # elif 'pythia' in args.model:
-            #     layers = model.gpt_neox.layers
-            #     token_embd = model.gpt_neox.embed_in
-            #     pos_embd = torch.zeros_like(token_embd)
-            #     final_layer = model.gpt_neox.final_layer_norm
-            #     lm_head = model.embed_out
-            # else:
-            #     layers = model.transformer.h
-            #     token_embd = model.transformer.wte.output
-            #     pos_embd = model.transformer.wpe.output
-            #     final_layer = model.transformer.ln_f
-            #     lm_head = model.lm_head
+            if 'opt' in args.model:
+                layers = model.model.decoder.layers
+                token_embd = model.model.decoder.embed_tokens
+                pos_embd = model.model.decoder.embed_positions
+                final_layer= model.model.decoder.final_layer_norm
+                lm_head = model.lm_head
+            elif 'pythia' in args.model:
+                layers = model.gpt_neox.layers
+                token_embd = model.gpt_neox.embed_in
+                final_layer = model.gpt_neox.final_layer_norm
+                lm_head = model.embed_out
+            else:
+                layers = model.transformer.h
+                token_embd = model.transformer.wte
+                pos_embd = model.transformer.wpe
+                final_layer = model.transformer.ln_f
+                lm_head = model.lm_head
             with model.trace(encoded_sents[:, :-1]) as tracer:
-                for layer_id, layer in enumerate(['token'] + list(model.transformer.h)):
+                for layer_id, layer in enumerate(['token'] + list(layers)):
                     if layer == 'token':
-                        token_embd = model.transformer.wte.output + model.transformer.wpe.output
-                        layer_logit = model.lm_head(model.transformer.ln_f(token_embd))
+                        if 'pythia' in args.model:
+                            embd = token_embd.output
+                        else:
+                            embd = token_embd.output + pos_embd.output
+                        layer_logit = lm_head(final_layer(embd))
                     else:
-                        layer_logit = model.lm_head(model.transformer.ln_f(layer.output[0]))
+                        layer_logit = lm_head(final_layer(layer.output[0]))
                     layer_logits.append(layer_logit.save())
 
             for layer_id, layer_logit in enumerate(layer_logits):
@@ -138,7 +140,7 @@ def main():
     out_dir = f'results/logit-lens/{args.data}/{args.model}/'
     os.makedirs(out_dir, exist_ok=True)
 
-    with open(os.path.join(out_dir, f'measurement_nn_{args.model.replace("/","-")}_{args.data}_{args.method}.txt'),'w') as file:
+    with open(os.path.join(out_dir, f'measurement_nn_{args.prefix}_{args.model.replace("/","-")}_{args.data}_{args.method}.txt'),'w') as file:
         file.writelines(s.getvalue())
 
     if not args.trial:

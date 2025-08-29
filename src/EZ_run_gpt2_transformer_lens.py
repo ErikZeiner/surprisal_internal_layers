@@ -88,7 +88,12 @@ def main():
             logits, cache = gpt2_model.run_with_cache(encoded_sents[:,:-1])
             gold_logit = logits[:, :-1, :]
 
-            layer_reps = torch.cat([(cache["embed"] + cache["pos_embed"]).unsqueeze(0), cache.stack_activation("resid_post")],dim=0)  # (num_layers+1, batch, seq, d_model)
+            if 'pythia' in args.model:
+                layer_reps = torch.cat(
+                    [(cache["embed"]).unsqueeze(0), cache.stack_activation("resid_post")],
+                    dim=0)  # (num_layers+1, batch, seq, d_model)
+            else:
+                layer_reps = torch.cat([(cache["embed"] + cache["pos_embed"]).unsqueeze(0), cache.stack_activation("resid_post")],dim=0)  # (num_layers+1, batch, seq, d_model)
             target_ids = encoded_sents[:, 1:].to(gold_logit.device)
             layer_logits = torch.einsum("l b s d, d v -> l b s v", gpt2_model.ln_final(layer_reps), gpt2_model.unembed.W_U) + gpt2_model.unembed.b_U
 
@@ -115,7 +120,7 @@ def main():
     out_dir = f'results/logit-lens/{args.data}/{args.model}/'
     os.makedirs(out_dir, exist_ok=True)
 
-    with open(os.path.join(out_dir, f'measurement_tl_{args.model.replace("/","-")}_{args.data}_{args.method}.txt'), 'w') as file:
+    with open(os.path.join(out_dir, f'measurement_tl_{args.prefix}_{args.model.replace("/","-")}_{args.data}_{args.method}.txt'), 'w') as file:
         file.writelines(s.getvalue())
 
     if not args.trial:
